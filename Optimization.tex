@@ -1,36 +1,23 @@
-\documentclass{scrartcl}
+%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Dokumentinformationen %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\titleinfo}{Optimization}
+\newcommand{\authorinfo}{R. Koller} % Do not remove any names! Initial authors stay first.
+\newcommand{\versioninfo}{fS2013}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Standard projektübergreifender Header für
+% Standard projektï¿½bergreifender Header fï¿½r
 % - Makros 
 % - Farben
 % - Mathematische Operatoren
 %
-% DORT NUR ERGÄNZEN, NICHTS LÖSCHEN
+% DORT NUR ERGÃ„NZEN, NICHTS LÃ–SCHEN
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{header/zusammenfassung}
-\usepackage{pdfpages, tabularx}
+\include{header}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%% 
-% Dokumentinformationen %
-%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Optimization - Zusammenfassung}
-\author{R. Koller}
-\subtitle{gem\"ass Unterricht MSE FS13} 
-
-\newcommand{\beispiel}[1]{\textcolor{brown}{\mbox{#1}}}
-\newcommand{\formel}[1]{\fcolorbox{black}{yellow}{#1}}
-
-% Möglichst keine Ergänzungen hier, sondern in header.tex
 \begin{document}
-\selectlanguage{ngerman}
-
-\section{Definitionen}
-
-asdf
-
-\section{Lineare Programmierung}
-
+\include{Content/Definitionen/Definitionen}
+\include{Content/LinProg/LinProg}
+\include{Content/IntProg/IntProg}
 
 \end{document}

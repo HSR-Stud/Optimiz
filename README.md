@@ -1,5 +1,5 @@
-Opt
-===
+Optimiz
+=======
 
 Summary for MSE module Optimization.
 Lectures by Andreas Klinkert, Manfred Vogel, FS 2013.
