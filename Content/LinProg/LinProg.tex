@@ -1,5 +1,60 @@
 \section{Lineare Programmierung \skript{49}}
 
 \subsection{Problemformulierung}
+  \subsubsection{Normalformen}
+    Ein lineares Programm kann in verschiedenen Formen geschrieben werden:
+    
+    \begin{tabularx}{\textwidth}{|l|X|}
+      \hline
+      Allgemeine Form & 
+          max / min $cx$ \newline
+          $a^ix \leq b_i,$ \newline
+          $a^ix = b_i,$ \newline
+          $a^ix \geq b_i,$ \newline
+          $x_j \geq 0,$ \newline
+          $x_j \text{ frei},$ \newline
+          $x_j \leq 0$
+          \\
+      \hline
+      Kanonische Form & 
+          max $cx$ \newline
+          $a^ix \leq b_i,$ \newline
+          $x_j \geq 0$ \newline
+          \em oder \em\newline
+          min $cx$ \newline
+          $a^ix \geq b_i,$ \newline
+          $x_j \geq 0$
+         \\
+      \hline
+      Standardform & 
+        max / min $cx$ \newline
+        $a^ix = b_i,$ \newline
+        $x_j \geq 0$
+        \\
+      \hline
+      Ungleichsform & 
+        max $cx$ \newline
+        $a^ix \leq b_i,$ \newline
+        \em oder \em \newline
+        min $cx$ \newline
+        $a^ix \geq b_i,$
+        \\
+      \hline
+    \end{tabularx}
+
+    Zusätzlich wird zwischen Maximierungs- und Minimierungsproblemen unterschieden.
+    
+  \subsubsection{Umformulierungen \skript{51}}
+    \begin{aufzaehlung}
+      \item $x_j \leq 0 \qquad \rightsquigarrow \qquad x_j := -\bar{x}_j, \quad \bar{x}_j \geq 0$
+      \item $x_j \text{ frei} \qquad \rightsquigarrow \qquad x_j := x_j^+ - x_j^-, \quad x_j^+, x_j^- \geq 0$
+      \item $a^i x = b_i \qquad \rightsquigarrow \qquad a^i x \leq b_i, \quad a^i x \geq b_i$
+      \item $a^i x \leq b_i \qquad \rightsquigarrow \qquad -a^i x \geq -b_i$ bzw.\\
+            $a^i x \geq b_i \qquad \rightsquigarrow \qquad -a^i x \leq -b_i$
+      \item $a^i x \leq b_i \qquad \rightsquigarrow \qquad a^i x + x_i^s = b_i, \quad x_i^s \geq 0$ bzw.\\
+            $a^i x \geq b_i \qquad \rightsquigarrow \qquad a^i x - x_i^s = b_i, \quad x_i^s \geq 0$
+    \end{aufzaehlung}
+  
+
 \subsection{Simplex Algorithmus}
 
