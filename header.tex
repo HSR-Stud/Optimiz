@@ -29,7 +29,7 @@
 %\usepackage{array} % anordnung in tabellen
 %Show pdf in 100 zomm factor!
 \usepackage{hyperref}
-\hypersetup{pdfstartview={XYZ null null 1.00}}
+\usepackage{listings}               %Programmcodeumgebung für Matlab Code
 
 %%%%%%%%%%%%%%%%%%%%
 % Generelle Makros %
@@ -123,6 +123,23 @@
 %}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code Listings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstloadlanguages{Matlab} 
+\lstnewenvironment{MatlabCode}[1][] 
+{
+\lstset{ 
+    language= Matlab, 
+    basicstyle=\ttfamily,                     %generell Schreibmaschinenschrift 
+    basicstyle=\scriptsize, 
+    showstringspaces=false,                  %In Strings keine Backspace zeichen breaklines=true, 
+    numbers   =   left,                              %links Zeilennummern 
+    xleftmargin=.04\textwidth, 
+    %frame=single,                                 %shadowbox, leftline, lines, topline, t, r, b, l 
+    #1} 
+} 
+{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,6 +149,7 @@
 \hypersetup{pdfauthor={\authorinfo},pdftitle={\titleinfo},colorlinks=false}
 \author{\authorinfo}
 \title{\titleinfo}
+\hypersetup{pdfstartview={XYZ null null 1.00}}
 
 %Kopf- und Fusszeile
 \pagestyle{fancy}
