@@ -70,11 +70,11 @@
         & Kürzeste Wege zwischen allen Eckenpaaren\\
     \end{tabular}
   \subsubsection{Algorithmen}
-    \begin{tabularx}{\textwidth}{p{3cm} p{4cm} X p{2cm}}
+    \begin{tabularx}{\textwidth}{p{3cm} p{4cm} X r}
       \textbf{Algorithmus} & \textbf{Löst} & \textbf{Bemerkungen} \\
       \textbf{Dijkstra} 
         & Source-sink shortest path, single source shortest path
-        & Kantengewichte $\geq$ 0; Greed
+        & Kantengewichte $\geq$ 0; Greedy; Loop über alle bereits besuchten Ecken: Suche minimale Distanz zu nächster Ecke, der Weg, der am Schnellsten am Ziel ist, gewinnt.
         & $O(n^2)$\\
       \textbf{Bellman-Ford}
         & Source-sink shortest path, single source shortest path
