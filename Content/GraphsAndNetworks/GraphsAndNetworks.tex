@@ -71,23 +71,28 @@
     \end{tabular}
   \subsubsection{Algorithmen}
     \begin{tabularx}{\textwidth}{p{3cm} p{4cm} X r}
-      \textbf{Algorithmus} & \textbf{Löst} & \textbf{Bemerkungen} \\
-      \textbf{Dijkstra} 
+      \textbf{Algorithmus} & \textbf{Löst} & \textbf{Bemerkungen} & \textbf{Compl.} \\
+      \hline
+      \textbf{Dijkstra} \skript{14} 
         & Source-sink shortest path, single source shortest path
-        & Kantengewichte $\geq$ 0; Greedy; Loop über alle bereits besuchten Ecken: Suche minimale Distanz zu nächster Ecke, der Weg, der am Schnellsten am Ziel ist, gewinnt.
+        & Kantengewichte $\omega(v_i v_j) \geq 0$; Greedy; Loop über alle bereits besuchten Ecken: Suche minimale Distanz zu nächster Ecke. Der Weg, der am Schnellsten am Ziel ist, gewinnt.
         & $O(n^2)$\\
+      \hline
       \textbf{Bellman-Ford}
         & Source-sink shortest path, single source shortest path
         & Auch negative Kantengewichte möglich 
         & ?\\
+      \hline
       \textbf{A*} 
         & Single source shortest path
-        & Heuristische Methode, beschleunigte Laufzeit
+        & Heuristische Methode des Dijkstra, beschleunigte Laufzeit, findet optimale Lösung
         & ?\\
-      \textbf{Floyd-Warshall }
+      \hline
+      \textbf{Floyd-Warshall} \skript{16}
         & All pairs shortest paths 
-        &
+        & Gerichtete Kreise möglich, Kantengewichte $\omega(v_i v_j) \geq 0$
         & $O(2n^3)$\\
+      \hline
     \end{tabularx}
 	
 \subsection{Flüsse in Netzwerken \skript{18}}
@@ -104,9 +109,24 @@
   
 \subsection{Maximale Flüsse \skript{20}}
   \begin{minipage}{13.7cm}
-    Gesucht wird der maximal mögliche Fluss zwischen einer Quelle $s$ zu einer Senke $t$ ($st$-Netzwerk). Ermittlung mit \textbf{Ford-Fulkerson}-Algorithmus, der auch Rückwärtsflüsse beachtet.
+    Gesucht wird der maximal mögliche Fluss zwischen einer Quelle $s$ zu einer Senke $t$ ($st$-Netzwerk). Für Komplexität: $m$ = Anzahl Kanten, $f$ = maximaler Fluss von $s$ nach $t$.
     
-    Das \textbf{Max-Flow Min-Cut} Theorem besagt, dass der maximale Fluss in einem $st$-Netzwerk gleich dem minimalen Fluss über alle möglichen $st$-Schnitte ist.
+    \begin{tabularx}{\textwidth}{p{3cm} X r}
+      \textbf{Algorithmus} & \textbf{Beschreibung} & \textbf{Compl.}\\
+      \hline
+      \textbf{Ford-Fulkerson} \skript{22}
+        & Kapazitäten müssen ganzzahlig sein! Pfade werden ausprobiert und jeweils der maximale Fluss durch diesen Pfad als (fiktiven) Rückwärtsfluss auf allen Kanten aufgetragen.
+        & $O(m \cdot f)$\\
+      \hline
+      \textbf{Edmonds-Karp}
+        & Gleich wie Ford-Fulkerson, aber es wird eine Breitensuche BFS angewendet.
+        & $O(n\cdot m^2)$\\
+      \hline
+      \textbf{Max-Flow Min-Cut}
+        & Der maximale Fluss in einem $st$-Netzwerk ist gleich dem minimalen Fluss über alle möglichen $st$-Schnitte.
+        & -\\
+      \hline
+    \end{tabularx}
   \end{minipage}
   \begin{minipage}{5cm}
     \includegraphics[width=5cm]{./Content/GraphsAndNetworks/max-flow-min-cut}
@@ -114,12 +134,25 @@
 
 \subsection{Reduktionen auf Maxflow-Probleme \skript{25}}
   \begin{minipage}{9.5cm}
+    Viele bestehenden Probleme können auf Maxflow-Probleme reduziert werden:
+    
     \begin{liste}
-      \item Mehrere Quellen können zu einer Quelle zusammengefasst werden, ebenfalls bei Senken (Bild rechts)
+      \item Mehrere Quellen und Senken können zu einer Quelle und einer Senke zusammengefasst werde (Bild rechts, Übung II.5/1).
       \item Maximalwerte pro Ecke können mit zusätzliche Ecken hinzugefügt werden.
+      \item Angebots- und Nachfrageausgleich zw. Lieferanten und Konsumenten mit eingeschränkten Transportwegen. Hier werden die Lieferanten zu einer Quelle zusammengefasst (die Kantengewichte entsprechen dem Angebot des jeweiligen Lieferanten), dasselbe für die Konsumenten. (Übung II.5/2)
+      
       \item Weitere Ideen...
     \end{liste}
   \end{minipage}
   \begin{minipage}{9.5cm}
     \includegraphics[width=9.5cm]{./Content/GraphsAndNetworks/maxflow-reduktion}
   \end{minipage}
+  
+\subsection{Mincost-Flows \skript{28}}
+  Wenn zum maximalen Fluss die Kosten minimal gehalten werden müssen.
+  \begin{enumerate}
+    \item Maxflow-Problem lösen (Vorwärtskanten: Kantenkosten $k$ hinzufügen, Rückwärtskanten: negative Kantenkosten $-k$ zuordnen)
+    \item Fluss entlang von Kreis mit negativen Kosten erhöhen
+    \item Schritt 2 wiederholen, bis keine Kreise mit negativen Kosten vorhanden sind
+  \end{enumerate}
+  Siehe Übung II.5/1b.

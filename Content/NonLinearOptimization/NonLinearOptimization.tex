@@ -93,10 +93,8 @@
   
 \subsection{Quasi-Newton-Verfahren}
   Um die Berechnung der Ableitungen zu umgehen, werden diese durch finite Differenzen approximiert. 
-  
   $$\frac{\partial^2 f}{\partial x_i^2} = \frac{1}{\epsilon^2} 
   \left( f(x_1, x_2, \ldots, x_i+\epsilon, \ldots, x_n) - 2 f(x_1, x_2, \ldots, x_i, \ldots, x_n) + f(x_1, x_2, \ldots, x_i-\epsilon, \ldots, x_n) \right)$$
-  
   $$\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{1}{4 \epsilon^2} \begin{pmatrix}
     f(x_1, x_2, \ldots, x_i+\epsilon, \ldots, x_k+\epsilon, \ldots, x_n) - f(x_1, x_2, \ldots, x_i-\epsilon, \ldots, x_k+\epsilon, \ldots, x_n)\\
     -f(x_1, x_2, \ldots, x_i+\epsilon, , \ldots x_k-\epsilon, \ldots, x_n) + f(x_1, x_2, \ldots, x_i-\epsilon, \ldots, x_k-\epsilon, \ldots, x_n)
