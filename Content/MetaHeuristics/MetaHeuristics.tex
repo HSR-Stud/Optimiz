@@ -102,6 +102,22 @@
    
    
  \subsection{Ant Colony Optimization \skript{21}}
+   Ameisen folgen intensiven Pheromon-Spuren, da dort die Chance auf Futter zu treffen gross ist. Diese Idee wird bei ACO aufgenommen. Mit einer Wahrscheinlichkeit $P(x_{ij})$ wird ein möglicher Pfad $ij$ in die neue Generation übernommen. Zusätzlich wird meist auch ein "`Elite-Bypass"' mit Schwellwert $Q$ implementiert:
+   $$P(x_{ij}) = 
+   \begin{cases}
+     \text{if } z < Q = 
+     \begin{cases}
+       1 & \text{if } j = \arg \max\limits_{k \in \mathbf{W}_i}[\tau_{ik}^\alpha \eta_{ik}^\beta] \\
+       0 & \text{else}
+     \end{cases} \\
+     \text{if } z \geq Q
+     \begin{cases}
+       \dfrac{\tau_{ij^\alpha \eta_{ij}^\beta}}{\sum\limits_{j \in \mathbf{W}_i} \tau_{ij^\alpha \eta_{ij}^\beta}}  & \text{if }j \in \mathbf{W}_i\\
+       0 & \text{else}
+     \end{cases}
+   \end{cases}$$
+   mit $\eta_{ij}$ als heuristischer Information (z.B. $\eta_{ij} = \frac{1}{d_{ij}}$ beim TSP)
+ \lstinputlisting[language=Java]{./Content/MetaHeuristics/ACO.java}
  
  \subsection{Particle Swarm Optimization \skript{23}}
  
