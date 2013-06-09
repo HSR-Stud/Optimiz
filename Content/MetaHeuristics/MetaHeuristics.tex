@@ -44,7 +44,7 @@
 
 \subsection{Genetische Algorithmen (GA) \skript{8}}
   \begin{minipage}{12cm}
-    Löst alle Klassen von schwierigen Optimierungsproblemen: Parameteroptimierungen, kombinatorische Probleme (e.g. Travelling Salesman), Subset-Selektion (Stichwort Data-Mining).
+    Löst alle Klassen von schwierigen Optimierungsproblemen: Parameteroptimierungen, kombinatorische Probleme (e.g. Travelling Salesman), Subset-Selektion (Stichwort Data-Mining). Nachteile sind die Erfahrung und das Geschick, das nötig ist für deren Entwicklung.
   
     Grundprinzip: Durch \em Selektion \em (Fitness/objective function), \em Rekombination \em (Kombination des genetischen Materials der Eltern) und \em Mutation \em (Veränderung der Erbinformation) können Funktionen optimiert werden. Dabei wird iterativ von einer "`alten"' Population durch verschiedene Operationen eine neue Population generiert, welche im Normalfall gleich gross sein soll.\\
     
@@ -52,9 +52,9 @@
     \includegraphics[width=12cm]{./Content/MetaHeuristics/GeneticAlgorithms_Model}
   \end{minipage}
   \begin{minipage}{7cm}
-   \begin{flushright}
-    \includegraphics[width=6cm]{./Content/MetaHeuristics/GeneticAlgorithms_Principle}
-   \end{flushright}
+    \begin{flushright}
+      \includegraphics[width=6cm]{./Content/MetaHeuristics/GeneticAlgorithms_Principle}
+    \end{flushright}
     
     \subsubsection{Codierung der Parameter \skript{11}}
       Am besten werden die Parameter \em Gray\em -codiert, damit Mutationen nicht zu sehr ins Gewicht fallen:
@@ -95,30 +95,45 @@
     \includegraphics[width=11cm]{./Content/MetaHeuristics/GeneticAlgorithms_Mutation}
   \end{minipage}
   
- \subsubsection{Ersetzungsschemata \skript{19}}
-   Was passiert mit der alten Population? 
+\subsubsection{Ersetzungsschemata \skript{19}}
+  Was passiert mit der alten Population? 
+  
+  \includegraphics[width=12cm]{./Content/MetaHeuristics/GeneticAlgorithms_Replacements}
    
-   \includegraphics[width=12cm]{./Content/MetaHeuristics/GeneticAlgorithms_Replacements}
    
-   
- \subsection{Ant Colony Optimization \skript{21}}
-   Ameisen folgen intensiven Pheromon-Spuren, da dort die Chance auf Futter zu treffen gross ist. Diese Idee wird bei ACO aufgenommen. Mit einer Wahrscheinlichkeit $P(x_{ij})$ wird ein möglicher Pfad $ij$ in die neue Generation übernommen. Zusätzlich wird meist auch ein "`Elite-Bypass"' mit Schwellwert $Q$ implementiert:
-   $$P(x_{ij}) = 
-   \begin{cases}
-     \text{if } z < Q = 
-     \begin{cases}
-       1 & \text{if } j = \arg \max\limits_{k \in \mathbf{W}_i}[\tau_{ik}^\alpha \eta_{ik}^\beta] \\
-       0 & \text{else}
-     \end{cases} \\
-     \text{if } z \geq Q
-     \begin{cases}
-       \dfrac{\tau_{ij^\alpha \eta_{ij}^\beta}}{\sum\limits_{j \in \mathbf{W}_i} \tau_{ij^\alpha \eta_{ij}^\beta}}  & \text{if }j \in \mathbf{W}_i\\
-       0 & \text{else}
-     \end{cases}
-   \end{cases}$$
-   mit $\eta_{ij}$ als heuristischer Information (z.B. $\eta_{ij} = \frac{1}{d_{ij}}$ beim TSP)
- \lstinputlisting[language=Java]{./Content/MetaHeuristics/ACO.java}
- 
- \subsection{Particle Swarm Optimization \skript{23}}
- 
- 
+  \subsection{Ant Colony Optimization \skript{21}}
+  Ameisen folgen intensiven Pheromon-Spuren, da dort die Chance auf Futter zu treffen gross ist. Diese Idee wird bei ACO aufgenommen. Mit einer Wahrscheinlichkeit $P(x_{ij})$ wird ein möglicher Pfad $ij$ in die neue Generation übernommen. Zusätzlich wird meist auch ein "`Elite-Bypass"' mit Schwellwert $Q$ implementiert:
+  $$P(x_{ij}) = 
+  \begin{cases}
+    \text{if } z < Q = 
+    \begin{cases}
+      1 & \text{if } j = \arg \max\limits_{k \in \mathbf{W}_i}[\tau_{ik}^\alpha \eta_{ik}^\beta] \\
+      0 & \text{else}
+    \end{cases} \\
+    \text{if } z \geq Q
+    \begin{cases}
+      \dfrac{\tau_{ij^\alpha \eta_{ij}^\beta}}{\sum\limits_{j \in \mathbf{W}_i} \tau_{ij^\alpha \eta_{ij}^\beta}}  & \text{if }j \in \mathbf{W}_i\\
+      0 & \text{else}
+    \end{cases}
+  \end{cases}$$
+  mit $\eta_{ij}$ als heuristischer Information (z.B. $\eta_{ij} = \frac{1}{d_{ij}}$ beim TSP)
+  
+  Bei jedem Schritt verdunsten die Pheromone nach folgender Regel mit Verdunstungsfaktor $0 \geq \rho \geq 1$:
+  $$\tau_{ij} = \begin{cases}
+    \tau_{ij}^{alt} (1-\rho) + \frac{\rho}{f(\vec{x})} & \text{if } j \in \mathbf{W}_i\\
+    \tau_{ij}^{alt} (1-\rho) & \text{if } j \notin \mathbf{W}_i\\
+  \end{cases}$$
+  
+  ACO wird eingesetzt für TSP, Vehicle Routing, Graph Coloring, Routing, Scheduling, etc.
+  
+  ACO liefert schnell gute Resultate für kombinatorische Probleme, ist aber nicht für Parameteroptimierung geeignet.
+  
+  \lstinputlisting[language=Java]{./Content/MetaHeuristics/ACO.java}
+  
+\subsection{Particle Swarm Optimization \skript{23}}
+  Speziell für Parameteroptimeriung geeignet: Jedes Individuum versucht zwar, sein lokales Optimum zu finden, gleichzeitig lernt es aber von den seinen eigenen Erfahrungen und denen des Schwarms.
+  
+  
+  \lstinputlisting[language=Java]{./Content/MetaHeuristics/PSO.java}
+  
+
