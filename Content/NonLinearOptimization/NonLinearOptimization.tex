@@ -1,14 +1,30 @@
+
+
+
 \section{Nichtlineare Optimierung}
-\subsection{Definitionen}
-  Gradient: $\overline{\grad} f = \nabla f = [f_{x_1}, f_{x_2}, \ldots, f_{x_n} ]^T$ (Spaltenvektor)
-  
-  Satz von Schwarz: $\frac{\partial^2 f(x_1, x_2)}{\partial x_1 \partial x_2} = \frac{\partial^2 f(x_1, x_2)}{\partial x_2 \partial x_1}$
+
+\textbf{Satz von Schwarz:} $\frac{\partial^2 f(x_1, x_2)}{\partial x_1 \partial x_2} = \frac{\partial^2 f(x_1, x_2)}{\partial x_2 \partial x_1}$
+
+\subsection{Gradient}
+Der Gradient zeigt immer in Richtung des steilsten Anstiegs der Funktion $f$ und steht senkrecht auf den Höhenlinien.
+$\nabla f =\begin{bmatrix}
+f_{x_1}\\
+f_{x_2}\\
+v_dots\\
+f_{x_n}
+\end{bmatrix}=\begin{bmatrix}
+\partFrac{f}{x_1}\\[0.1cm]
+\partFrac{f}{x_2}\\[0.1cm]
+\vdots\\[0.1cm]
+\partFrac{f}{x_n}
+\end{bmatrix}$
+ 
 
 \subsection{Gradientenverfahren}
-  \begin{minipage}{14cm}
+  \begin{minipage}{9cm}
     Von der Stelle $\vec{x}^{(i)}$ wird in Richtung des Antigradienten geschritten. 
     $$\vec{x}^{(i+1)} = \vec{x}^{(i)} - \alpha_i \nabla f(\vec{x}^{(i)})$$
-    
+\subsubsection{Eigenschaften}    
     Vorteile:
     \begin{liste}
       \item Einfach zu implementieren
@@ -22,11 +38,41 @@
       \item In der Nähe der optimalen Lösung Zick-Zack-Kurs
     \end{liste}
   \end{minipage}
-  \begin{minipage}{5cm}
-    \includegraphics[width=5cm]{./Content/NonLinearOptimization/gradient-descent}
+  \hfill
+  \begin{minipage}{4.5cm}
+    \includegraphics[width=4.5cm]{./Content/NonLinearOptimization/gradient1D}
   \end{minipage}
-  
-  Matlab-Code für das Verfahren (nur ein Loop):
+  \hfill
+  \begin{minipage}{4.5cm}
+  	\includegraphics[width=4.5cm]{./Content/NonLinearOptimization/gradient-descent}
+  \end{minipage}
+ \subsubsection{Algorithmus (zur Minimierung)}
+ 
+ \begin{enumerate}
+	\item $\beta_1=0$\quad$\beta_3=1$\quad $h(\beta_3)=f\Bigl(\vec{x}^{(i)} - \beta_3 \nabla f(\vec{x}^{(i)})\Bigr)$
+	\item $while\Bigl(h(\beta_3)\geq h(\beta_1)\Bigl)\Bigl\{\beta_3=\frac{\beta_3}{2}\Bigr\}$
+	\item Parabel konstruieren: $P(\beta)=A\beta^2+B\beta+C$\quad mit \quad $\beta_1=0$,\quad $\beta_2=\beta_3/2$\\
+		$\begin{bmatrix}
+		\beta_1^2 & \beta_1 & 1\\
+		\beta_2^2 & \beta_2 & 1\\
+		\beta_3^2 & \beta_3 & 1
+		\end{bmatrix}\cdot\begin{bmatrix}A\\B\\C\end{bmatrix}=\begin{bmatrix}h(\beta_1)\\ h(\beta_2)\\ h(\beta_3)\\\end{bmatrix}\quad\Rightarrow\quad\begin{bmatrix}
+		0 & 0 & 1\\
+		\beta_3^2/4 & \beta_3/2 & 1\\
+		\beta_3^2 & \beta_3 & 1
+		\end{bmatrix}\cdot\begin{bmatrix}A\\B\\C\end{bmatrix}=\begin{bmatrix}h(0)\\ h(\beta_3/2)\\ h(\beta_3)\end{bmatrix}\quad\Rightarrow\quad
+		\begin{bmatrix}A\\B\\C\end{bmatrix}=\begin{bmatrix}
+		\frac{2h(\beta_1)-4h(\beta_2)+2h(\beta_3)}{\beta_3^2}\\[0.2cm]
+		\frac{-3h(\beta_1)+4h(\beta_2)-h(\beta_3)}{\beta_3}\\[0.1cm]
+		h(\beta_1)\end{bmatrix}$
+  	\item $if\Bigl(P(\beta_3)<P(-B/2A)=\frac{\beta_3\bigl(3h(\beta_1)-4h(\beta_2)+h(\beta_3)\bigr)}{4\bigl(h(\beta_1)-h(\beta_2)h(\beta_3)\bigr)}\Bigr)\Big\{\hat{a}=\beta_3\Big\}$\\
+  	$else\Big\{\hat{a}=P(-B/2A)=\frac{\beta_3\bigl(3h(\beta_1)-4h(\beta_2)+h(\beta_3)\bigr)}{4\bigl(h(\beta_1)-h(\beta_2)h(\beta_3)\bigr)}\Big\}$
+  	\item $\vec{x}^{(i+1)} = \vec{x}^{(i)} - \hat{\alpha}\nabla f(\vec{x}^{(i)})\quad\Rightarrow\quad $Punkt $ 1.$
+  	
+  	
+ \end{enumerate}
+ 
+ \subsubsection{Matlab-Implementation (nur ein Loop)}
   \begin{MatlabCode}
     % Find betas
     beta1 = 0;
@@ -62,7 +108,14 @@
   \end{MatlabCode}
   
 \subsection{Newton-Verfahren}
-  \begin{minipage}{14cm}
+
+  \begin{minipage}{13cm}
+  	\textbf{Tangentengleichung:}\\
+  	$t(x^{(i+1)})=f(x^{(i)})+f'(x^{(i+1)})\cdot(x^{(i)})=0\quad\Rightarrow\quad x^{(i+1)}=x^{(i)}-\frac{f(x^{(i)})}{f'(x^{(i)})}$\\
+  	
+  	\textbf{Bestimmung der Ableitung (numerisch):}\\
+  	$f'(x^{(i)})\approx\frac{f(x^{(i)}+h)-f(x^{(i)})}{h}\qquad$ für $h<<1$\\
+  	
     Anstelle des Gradienten wird eine Tangente an den Arbeitspunkt gelegt.
     $$\vec{x}^{(i+1)} = \vec{x}^{(i)} - \left(\bm H(\vec{x}^{(i)})\right)^{-1} \nabla f(\vec{x}^{(i)})$$
     mit der Hesse-Matrix
@@ -74,6 +127,7 @@
     \vdots&\vdots&\ddots&\vdots\\
     \frac{\partial^2 f}{\partial x_n\partial x_1}(x)&\frac{\partial^2 f}{\partial x_n\partial x_2}(x)&\cdots&\frac{\partial^2  f}{\partial x_n\partial x_n}(x)
     \end{pmatrix}$$
+    (4 Funktionsaufrufe für Diagonalelemente, sonst 3 Funktionsaufrufe)\\
     
     Vorteile:
     \begin{liste}
@@ -86,12 +140,35 @@
       \item Inversion der Matrix skaliert schlecht ($O(n^3)$)
     \end{liste}
   \end{minipage}
-  \begin{minipage}{5cm}
-    \includegraphics[width=5cm]{./Content/NonLinearOptimization/newton}
+  \begin{minipage}{6cm}
+  	\includegraphics[width=6cm]{./Content/NonLinearOptimization/newton1D}
+    \includegraphics[width=6cm]{./Content/NonLinearOptimization/newton}
   \end{minipage}
   
   
 \subsection{Quasi-Newton-Verfahren}
+  \begin{minipage}{13cm}
+  \textbf{Idee:} Die Ableitung des Newton-Verfahren wird durch die Sekantensteigung ersetzt.\\
+  
+  $F'(x^{(i+1)})\approx\frac{F'(x^{(i+1)})-F'(x^{(i)})}{x^{(i+1)}-x^{(i)}}$\\
+  
+ \begin{enumerate}
+ \item Hesse-Matrix bestimmen: $\mathbf{H}(\vec{x}^{(0)})$\\
+ Gradient bestimmen: $\nabla f(\vec{x}^{(0)})$
+ \item $\mathbf{A}_{0}^{-1}=\bigl(\mathbf{H}(\vec{x}^{(0)})\bigr)$
+ \item $\vec{x}^{(1)}=\vec{x}^{(0)}-\mathbf{A}_{0}^{-1}\cdot\nabla f(\vec{x}^{(0)})$
+ \item $\mathbf{A}_{i}^{-1}=\mathbf{A}_{i-1}^{-1}-\displaystyle\frac{\bigl(\mathbf{A}_{i-1}^{-1}\cdot \vec{y}_i-\vec{s}_i\bigr)\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}}{\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}\cdot\vec{y}_i}\qquad i\geq 1\\
+ \vec{y}_i=\nabla f(\vec{x}^{(i)})-\nabla f(\vec{x}^{(i-1)})\qquad \vec{s}_i=\vec{x}^{(i)}-\vec{x}^{(i-1)}$
+ \item $\vec{x}^{(i+1)}=\vec{x}^{(i)}-\mathbf{A}_{i}^{-1}\cdot\nabla f(\vec{x}^{(i)})$
+ \end{enumerate}
+ 
+\end{minipage}
+\begin{minipage}{6cm}
+   \includegraphics[width=6cm]{./Content/NonLinearOptimization/QuasiNewton1D}
+   \includegraphics[width=6cm]{./Content/NonLinearOptimization/newton}
+\end{minipage}
+
+
   Um die Berechnung der Ableitungen zu umgehen, werden diese durch finite Differenzen approximiert. 
   $$\frac{\partial^2 f}{\partial x_i^2} = \frac{1}{\epsilon^2} 
   \left( f(x_1, x_2, \ldots, x_i+\epsilon, \ldots, x_n) - 2 f(x_1, x_2, \ldots, x_i, \ldots, x_n) + f(x_1, x_2, \ldots, x_i-\epsilon, \ldots, x_n) \right)$$
@@ -99,3 +176,13 @@
     f(x_1, x_2, \ldots, x_i+\epsilon, \ldots, x_k+\epsilon, \ldots, x_n) - f(x_1, x_2, \ldots, x_i-\epsilon, \ldots, x_k+\epsilon, \ldots, x_n)\\
     -f(x_1, x_2, \ldots, x_i+\epsilon, , \ldots x_k-\epsilon, \ldots, x_n) + f(x_1, x_2, \ldots, x_i-\epsilon, \ldots, x_k-\epsilon, \ldots, x_n)
   \end{pmatrix}$$
+ 
+ \subsection{Konvergenzbeschleunigung}
+ \textbf{Idee:} Mit der sogenannten Aitken'sche   $\nabla^2$–Methode wird aus der Folge $\{x_i\}$ die die schneller konvergierende Folge $\{\hat{x}_i\}$ berechnet.\\
+ 
+ Aitken $\nabla^2$-Methode:\quad $\boxed{\hat{x}=x_i-\frac{(x_{i+1}-x_i)^2}{x_{i+2}-2x_{i+1}+x_{i}}}$
+ 
+ 
+ 
+
+  
