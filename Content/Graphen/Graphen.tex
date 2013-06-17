@@ -32,17 +32,37 @@
 
 
 \subsection{Repräsentation von Graphen \skript{3}}
-  Adjazenzmatrix, Adjazenzliste
   
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{Content/Graphen/AdjListMatrix.png}
+	  
+	\includegraphics[width=0.5\textwidth]{Content/Graphen/KomplAdj.png}
+\end{center}
+
+
 \subsection{Entscheidungsbaum-Verfahren \skript{4}}
 	Das Travelling-Salesman-Problem (\skript{31}), wo jede Stadt genau ein Mal besucht werden darf, ist lösbar mit dem Branch-And-Bound Verfahren.
-	
+
+
 \subsection{Traversieren von Graphen \skript{9}}
+
+\begin{minipage}{0.5\textwidth}
 	\subsubsection{Tiefensuche (Depth-First Search, DFS)}
 		Ausgehend von einer Ecke, wird immer weiter zur nächsten Ecke durch den Baum "traversiert", bis das Ende erreicht ist. Dann wird von der nächsten unbesuchten Ecke weitertraversiert, bis alle Ecken besucht sind. Dies ist eine Last-In-First-Out (LIFO) Strategie.
-	
+		
+		\includegraphics[width=\textwidth]{Content/Graphen/DFS.png}  
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
 	\subsubsection{Breitensuche (Breadth-First Search, BFS)}
-  	Von einer Ecke werden alle benachbarten Ecken aufgesucht und im nächsten Schritt einer dieser benachbarten Ecken besucht. Dies ist eine First-In-First-Out (FIFO) Strategie.
+	  	Von einer Ecke werden alle benachbarten Ecken aufgesucht und im nächsten Schritt einer dieser benachbarten Ecken besucht. Dies ist eine First-In-First-Out (FIFO) Strategie.
+	  	
+	  	\includegraphics[width=\textwidth]{Content/Graphen/BFS.png}  
+\end{minipage}
+
+	
+
+	
+	
   	
 
 
