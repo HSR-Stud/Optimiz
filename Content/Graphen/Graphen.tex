@@ -1,0 +1,351 @@
+\section{Graphen und Netzwerke}
+\begin{tabularx}{\textwidth}{p{4cm} X}
+  Exakter Algorithmus
+    & Findet optimale Lösung\\
+  Heuristik
+    & Findet gute, aber normalerweise nicht optimale Lösung\\
+  Greedy Algorithmus
+    & Trifft zu jedem Zeitpunkt aktuell beste Wahl, d.h. lokales Optimum; müssen nicht zu globalen Optimum führen \\
+  Ungerichteter Graph
+    & Graph mit endlicher Menge Ecken $V$ und Kanten $v,w \in E$\\
+  Einfacher Graph
+    & Keine Schlingen, keine parallelen Kanten \\
+  Schlinge
+    & Kante, wo Anfang- gleich Endecke ist ($vv$)\\
+  Pfad 
+    & Folge von Ecken $v_0, v_1, ... v_k$\\
+  Kreis 
+    & Pfad, wo die Anfangsecke gleich der Endecke: $v_0 = v_k$\\
+  Azyklischer Graph, Wald
+    & Graph, der keinen Kreis enthält\\
+  Baum
+    & Azyklischer, zusammenhängender Graph\\
+  Bipartiter Graph
+    & Die Ecken können in zwei Teilmengen aufgeteilt werden, so dass jede Kante je eine Ecke in beiden Teilmengen hat \skript{10}\\
+  Eulerkreis
+    & Kreis, der jede Kante des Graphen genau ein Mal enthält\\
+  Hamiltonkreis
+    & Kreis, der alle Ecken genau ein Mal besucht und zudem in der Startecke endet\\
+  Euler-/Hamiltongraph
+    & Wenn Graph einen Euler- oder Hamiltonkreis enthält\\
+\end{tabularx}
+
+
+\subsection{Repräsentation von Graphen \skript{3}}
+  Adjazenzmatrix, Adjazenzliste
+  
+\subsection{Entscheidungsbaum-Verfahren \skript{4}}
+	Das Travelling-Salesman-Problem (\skript{31}), wo jede Stadt genau ein Mal besucht werden darf, ist lösbar mit dem Branch-And-Bound Verfahren.
+	
+\subsection{Traversieren von Graphen \skript{9}}
+	\subsubsection{Tiefensuche (Depth-First Search, DFS)}
+		Ausgehend von einer Ecke, wird immer weiter zur nächsten Ecke durch den Baum "traversiert", bis das Ende erreicht ist. Dann wird von der nächsten unbesuchten Ecke weitertraversiert, bis alle Ecken besucht sind. Dies ist eine Last-In-First-Out (LIFO) Strategie.
+	
+	\subsubsection{Breitensuche (Breadth-First Search, BFS)}
+  	Von einer Ecke werden alle benachbarten Ecken aufgesucht und im nächsten Schritt einer dieser benachbarten Ecken besucht. Dies ist eine First-In-First-Out (FIFO) Strategie.
+  	
+
+
+% MSTs
+\subsection{Minimum Spanning Tree (MST)}
+
+MST = Aufstellen eines Minimalen Baums: Summe aller Kantengewichte ist minimal unter allen verbundenen Knoten.
+	
+	\begin{tabularx}{\textwidth}{p{4cm} X p{4cm}}
+	  \textbf{Prim}-Algorithmus
+	    & Läuft über Ecken
+	    & $O(n^2)$ \\
+	  \textbf{Kruskal}-Algorithmus
+	    & Läuft über Kanten
+	    & $O(m \log(m))$\\
+	  MST-Heuristik
+	    & Von bestehendem MST aus, wird in beliebige Richtung iteriert
+	    & $O(n)$ ??
+	\end{tabularx}
+
+
+\subsubsection{Prime-Algorithmus}
+Setzt Ecken ($O(m^2)$)
+\begin{enumerate}
+	\item Beliebige Startecke $v_0$ für den MST wählen
+	\item Ecke $v_i$ mit kleinstem Abstand zu einer Ecke im MST hinzufügen
+	\item Punkt 2 wiederholen bis alle Ecken im MST
+\end{enumerate}
+
+
+\subsubsection{Kruskal-Algorithmus}
+Setzt Kanten ($O(m \log(m))$)
+\begin{enumerate}
+	\item Kante mit kleinstem Gewicht in den MST aufnehmen
+	\item Kante $e_i$ mit kleinstem Gewicht, die zwei Ecken verbindet die noch nicht durch den MST verbunden sind, im MST aufnehmen
+	\item zu 2 bis alle Ecken verbunden sind
+\end{enumerate}
+
+
+\subsubsection{MST-Heuristik}
+Hamiltonkreis aus MST generieren (Lösung muss nicht optimal sein!, Löst das TSP)
+\begin{enumerate}
+	\item Jede Kante im MST verdoppeln (Eulergraphen)
+	\item Eulerkreis auswählen (durchläuft alle Kanten)
+	\item Eulerkreis durchlaufen und dabei alle bereits besuchten Knoten überspringen (Hamiltonkreis)
+\end{enumerate}
+
+
+% Minimaler Weg
+\subsection{Minimaler Weg}
+
+\subsubsection{Probleme}
+    \begin{tabular}{ll}
+      Source-sink shortest path
+        & Kürzesten Weg zwischen Quelle/source und Senke/sink \\
+      Single source shortest paths
+        & Kürzeste Wege zwischen einer Quelle/source zu allen anderen Ecken \\
+      All pairs shortest paths
+        & Kürzeste Wege zwischen allen Eckenpaaren\\
+    \end{tabular}
+  \subsubsection{Algorithmen}
+    \begin{tabularx}{\textwidth}{p{3cm} p{4cm} X r}
+      \textbf{Algorithmus} & \textbf{Löst} & \textbf{Bemerkungen} & \textbf{Compl.} \\
+      \hline
+      \textbf{Dijkstra} \skript{14} 
+        & Source-sink shortest path, single source shortest path
+        & Kantengewichte $\omega(v_i v_j) \geq 0$; Greedy; Loop über alle bereits besuchten Ecken: Suche minimale Distanz zu nächster Ecke. Der Weg, der am Schnellsten am Ziel ist, gewinnt.
+        & $O(n^2)$\\
+      \hline
+      \textbf{Bellman-Ford}
+        & Source-sink shortest path, single source shortest path
+        & Auch negative Kantengewichte möglich 
+        & ?\\
+      \hline
+      \textbf{A*} 
+        & Single source shortest path
+        & Heuristische Methode des Dijkstra, beschleunigte Laufzeit, findet optimale Lösung
+        & ?\\
+      \hline
+      \textbf{Floyd-Warshall} \skript{16}
+        & All pairs shortest paths 
+        & Gerichtete Kreise möglich, Kantengewichte $\omega(v_i v_j) \geq 0$
+        & $O(2n^3)$\\
+      \hline
+    \end{tabularx}
+    
+    
+\subsubsection{Dijkstra}
+Sucht die kürzeste Verbindung zwischen Knoten $v_0$ und $v_n$ Kantengewicht müssen Positiv sein!
+Die Menge $V$ enthält alle Ecken die bereits erreicht wurden.
+$l_i$ ist der kürzeste Weg von der Ecke $v_0$ zur Ecke $v_i$.
+
+\begin{enumerate}
+	\item beliebige Startecke $v_0$ wählen und in die Ecken-Menge $V$ aufnehmen
+	\item Ecke zu $V$ hinzufügen, die mit dem kleinsten Abstand $w$ von einer Ecke in $V$ erreicht wird
+	\item $l_j = l_i + w$ ($j$ ist die neue Ecke und $i$ die Ecke die bereits in $V$ ist)
+	\item gehe zu 2 bis die Ecke $v_n$ zu $V$ hinzugefügt wird
+\end{enumerate}
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{Content/Graphen/Dijkstra.png}
+\end{center}
+
+
+\subsubsection{A*}
+Der A*-Algo. untersucht immer die Koten zuerst, die wahrscheinlich schnell zum Ziel führen. Diese Wahrscheinlichkeit wird ermittelt, in dem jedem bekannten Knoten $x$ ein Wert $f(x)$ zugewiesen wird. $f(x)$ beschreibt die Distanz vom Start zum Ziel über den verwendeten Knoten ist. Der Knoten mit dem kleinsten $f(x)$ wird als nächster untersucht.
+\[ f(x) = g(x) + h(x) \qquad \qquad g(x): \text{ Weg vom Startknoten bis zu }x  \qquad h(x): \text{ Weg von $x$ zum Zielknoten (Heuristik)}\]
+Eine Heuristik für die Verbindung von Städten wäre z.B. die Luftlinie. Für die Durchführung des Algos wird eine \textbf{Closed-List} (untersuchte Knoten) und eine \textbf{Open-List} (gefundene, aber noch nicht untersuchte Knoten) verwendet. \textbf{Gefundene Knoten} sind, die die eine Verbindung mit einem Knoten der Closed-List haben.\\
+
+\textbf{Bsp.:} Gesucht ist der kürzeste Weg von $Post$ nach $A$.
+Bei diesem Beispiel wird für die Distanzheuristik $h(x)$ zwischen den Knoten $v_i$ und $v_j$ der Betrag $h(x)=|\textcolor{red}{i}-\textcolor{red}{j}|$ verwendet ((\textcolor{red}{rot}) $A=1$, $B=2$, etc.).
+
+\begin{minipage}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/PostAStar.png}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/AStar.png}
+\end{minipage}
+
+Der Minimale Weg von der Post zum Knoten A beträgt 5 und kann rückwärts rekonstruiert werden:\\ $A\rightarrow B\rightarrow C \rightarrow Post$\\
+
+\subsubsection{Floyd-Warshall}
+
+
+
+%
+% Netzwerke
+%
+\section{Netzwerke}
+Jede Kante $vw$ hat jetzt auch eine Kapazität $c(vw)$, welche eine Obergrenze für den Fluss $f(vw)$ darstellt. Zusätzlich können den Kanten noch Kosten $k(vw)$ angefügt werden.
+  
+  \begin{tabularx}{\textwidth}{l X}
+    Verteilungsproblem
+      & Objekte von einem oder mehreren Orten (sources) an eines oder mehrere Ziele (sinks) zu verteilen\\
+    Matching-Probleme
+      & Zuordnung von Mengen, kann auch als bipartite Graphen interpretiert werden (bspw. Partnervermittlung) \\
+    Schnitt-Probleme
+      & Kanten entferne, um Netzwerk zu zerlegen (bspw. max. Anzahl Unterbrüche in Kommunikationsnetz)\\
+  \end{tabularx}
+
+% Reduktion auf Maxflow-Problem
+\subsection{Reduktion auf Maxflow-Problem}
+
+Viele bestehenden Probleme können auf Maxflow-Probleme reduziert werden:
+    
+    \begin{liste}
+      \item Mehrere Quellen und Senken können zu einer Quelle und einer Senke zusammengefasst werde (Bild rechts, Übung II.5/1).
+      \item Maximalwerte pro Ecke können mit zusätzliche Ecken hinzugefügt werden.
+      \item Angebots- und Nachfrageausgleich zw. Lieferanten und Konsumenten mit eingeschränkten Transportwegen. Hier werden die Lieferanten zu einer Quelle zusammengefasst (die Kantengewichte entsprechen dem Angebot des jeweiligen Lieferanten), dasselbe für die Konsumenten. (Übung II.5/2)
+    \end{liste}
+
+\begin{minipage}{0.6\textwidth}
+\textbf{Mehrere Quellen / Mehrere Senken:}\\
+	\begin{enumerate}
+		\itemsep-1mm
+		\item neue Quelle $s$ einführen (Kantenkapazitäten $c_s$ entsprechen der Summe der wegführenden Kapazitäten)
+		\item neue Senke $t$ einführen (Kantenkapazitäten $c_t$ entsprechen der Summe der hinführenden Kapazitäten)
+	\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/MultiSrcSink.pdf}
+\end{minipage}
+
+\textbf{Einschränkung durch Maximalkapazität:}\\
+Begernzungen durch einführen von zusatzt knoten.
+
+\begin{minipage}{0.6\textwidth}
+	\textbf{Begrenzte Output-Kapazität:}\\
+	
+	neun Knoten einführen (Kantenkapazitäten $c$ entspricht der beschränkten Output-Kapazitäten)
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/Constrain.pdf}
+\end{minipage}
+
+\begin{minipage}{0.33\textwidth}
+	\textbf{Logistik-Problem:}\\
+	
+	Lieferanten 0, 1, 2 haben eine Angebotskapazität\\
+	Bezüger 3, 4, 5 haben eine Nachfrage\\
+	neu eingefügte Quelle $s$ und Senke $t$ versorgen die Anbieter bzw. Bezüger mit den Angebot- bzw. Nachfragekapazitäten
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/LogProb1.png}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}	
+	\includegraphics[width=\textwidth]{Content/Graphen/LogProb2.png}
+\end{minipage}
+
+
+
+
+% Maxflow Problem
+\subsection{Maxflow Problem}
+
+ \begin{minipage}{13.7cm}
+    Gesucht wird der maximal mögliche Fluss zwischen einer Quelle $s$ zu einer Senke $t$ ($st$-Netzwerk). Für Komplexität: $m$ = Anzahl Kanten, $f$ = maximaler Fluss von $s$ nach $t$.
+    
+    \begin{tabularx}{\textwidth}{p{3cm} X r}
+      \textbf{Algorithmus} & \textbf{Beschreibung} & \textbf{Compl.}\\
+      \hline
+      \textbf{Ford-Fulkerson} \skript{22}
+        & Kapazitäten müssen ganzzahlig sein! Pfade werden ausprobiert und jeweils der maximale Fluss durch diesen Pfad als (fiktiven) Rückwärtsfluss auf allen Kanten aufgetragen.
+        & $O(m \cdot f)$\\
+      \hline
+      \textbf{Edmonds-Karp}
+        & Gleich wie Ford-Fulkerson, aber es wird eine Breitensuche BFS angewendet.
+        & $O(n\cdot m^2)$\\
+      \hline
+      \textbf{Max-Flow Min-Cut}
+        & Der maximale Fluss in einem $st$-Netzwerk ist gleich dem minimalen Fluss über alle möglichen $st$-Schnitte.
+        & -\\
+      \hline
+    \end{tabularx}
+  \end{minipage}
+  \begin{minipage}{5cm}
+    \includegraphics[width=5cm]{./Content/GraphsAndNetworks/max-flow-min-cut}
+  \end{minipage}
+
+
+\subsubsection{Augmenting-Path Methode}
+
+\begin{minipage}{0.7\textwidth}
+	\begin{enumerate}
+		\item beliebiger Pfad von $s$ nach $t$ wählen
+		\item begrenzender Pfad ermitteln (kleinste Kapazität) $f_i$
+		\item abziehen von $f_i$ von den Kapazitäten des gewählten Pfades $f_j$ ($f_j-f_i$)
+		\item Wenn ein weiterer Pfad von $s$ nacht $t$ führt gehe zu  Punkt 1, andernfalls zu 5
+		\item der Gesamtfluss ist die summe aller begrenzten Flüsse $f_{tot} = \sum_{i=1} f_i$
+	\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/augmentingPathMethode.png}
+\end{minipage}
+
+
+Vorgehen ist problematisch, da es nicht erlaubt ist, Flüsse in entgegen den Pfeilrichtungen zu verschieben! (Praxis: werden nicht reale Flüsse in Gegenrichtung transportiert, sondern fiktive)
+
+
+\subsubsection{Ford-Fulkerson}
+
+\begin{minipage}{0.7\textwidth}
+	\begin{enumerate}
+		\item Pfad von $s$ nach $t$ wählen
+		\item begrenzender Pfad ermitteln (kleinste Kapazität) $f_i$
+		\item abziehen von $f_i$ von den Vorwärtskanten $f_j$ und hinzufügen bei den Rückwertskanten $r_j$ des gewählten Pfades $f_j$, Existiert keine Rückwertskante muss diese eingefügt werden\\ ($f_j-f_i$ und $r_j + f_i$)
+		\item Wenn ein weiterer Pfad von $s$ nach $t$ führt gehe zu  Punkt 1, andernfalls zu 5
+		\item der Gesamtfluss ist die summe aller begrenzenden Flüsse $f_{tot} = \sum_{i=1} f_i$
+	\end{enumerate}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/FordFulkerson.png}
+\end{minipage}
+
+
+
+\subsubsection{Max-Flow Min-Cut}
+\textbf{Theorem:} \boxed{\text{Max-Flow ist gleich dem minimalen Fluss über alle möglichen ST-Cuts!}}
+
+\begin{minipage}{0.6\textwidth}
+	\textbf{Source Sink Cuts (ST-Cuts):}\\
+	
+	ST-Cut: Aufteilen der Ecken in eine Menge S (enthält Quelle s) und eine Menge T (enthält Senke t)\\
+	
+	Flow über ST-Cut: Summer aller Kapazitäten der Kanten, welche in S beginnen und in T enden!\\
+	
+	Max-Flow Min-Cut: im Bsp. ist der minimale Fluss über alle Cuts (Cut 5) gleich 7, was dem Maximalen Fluss des ST-Netzwerks entspricht. 
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/StCuts.pdf}
+\end{minipage}
+
+% Maxflow Mincost
+\subsection{Maxflow Mincost}
+Die Lösung des Max Flow Problems ist nicht eindeutig, darum können weitere Kriterien hinzugefügt werden.
+
+\begin{enumerate}
+	\item Ford-Fulkerson anwenden ($f_{tot}$ bleibt konstant!)
+	\item Restnetzwerk durch Kantenkosten $k$ erweitern (Vorwärtskante: $+k$, Rückwertskante: $-k$)
+	\item Kreis mit negativen Kosten vorhanden gehe zu 4, andernfalls zu 5
+	\item Fluss des neg. Kreises um die min. Kantenkapazität $c_{min}$ erhöhen (in Gegenrichtung!), gehe zu 3
+	\item Gesamtfluss (max): $f_{tot}$ aus Ford-Fulkerson
+	\item Gesamtkosten (min): Summe aller Rückwertskantenkosten (RK) multipliziert mit der entsprechenden Kantenkapazität:\\  
+	$k_{tot} = \sum\limits_{ i \in \text{alle RK}} c_i \cdot |k_i| $
+\end{enumerate}
+
+\textbf{Bsp.:}
+
+\begin{minipage}{0.33\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/MaxFlowMinCost1.png}
+	
+	Ausgangsnetzwerk mit Kapazitäten\\ und Kosten
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/MaxFlowMinCost2.png}
+	
+	Restnetzwerk mit $f_{tot}=4$, $k_{tot}=21$,\\ Kreis mit neg. Kosten (rot,\\ $1+2-1-3 = -1$) mit min. Kantenkapazität $c_{min} = 1$
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+	\includegraphics[width=\textwidth]{Content/Graphen/MaxFlowMinCost3.png}
+	
+	Neg.Kreis mit $c_{min}$ in Gegenrichtung erhöht\\
+	$f_{tot} = 4$, 
+	Gesamtkosten (RK!):\\ $k_{tot} = c_{1,s}\cdot|k_{1,s}| + c{2,1}\cdot|k_{2,1}|+... =\underbrace{2}_{c}\cdot\underbrace{(3+1+2+1+2+1)}_{\sum |k_i|}=20$
+\end{minipage}
+
