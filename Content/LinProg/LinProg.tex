@@ -1,6 +1,105 @@
 \section{Lineare Programmierung \skript{49}}
 
 \subsection{Problemformulierung}
+  \subsubsection{Notationen}
+    \begin{tabular}{p{6cm} l}
+      Variablen (Spalten) & $x \in \mathbb{R}^n$; $I = \{1, ..., m\}$ \\
+      Constraints ((Un-)gleichungen; Zeilen) & $a^k$; $J = \{1, ..., m\}$ \\
+      Matrix & $A \in \mathbb{R}^{m \times n}$
+    \end{tabular}
+    
+    \begin{tabularx}{\textwidth}{|X|p{4.5cm}|p{5.5cm}|p{2cm}|}
+    \hline
+      Lineares Problem (Beispiel U4-1)
+        & $\max x_1 + 3 x_2 + 2x_3$
+        & $x_2 + x_3 \leq 2$ \newline 
+          $x_1 - 2x_2 \leq -2$
+        & $x_1, x_2, x_3 \geq 0$\\
+      \hline
+      \hline
+      Zeilennotation
+        & $\max c x$ \newline
+        $c$ = Zeilenvektor $1 \times n$\newline
+        $x$ = Spaltenvektor $n \times 1$
+        & $a^i x \leq b_i, \;i=1,...,m$ \newline
+        $a^i$ = Zeilenvektor $1 \times n$\newline
+        $x$ = Spaltenvektor $n \times 1$
+        & $x \geq 0$\\
+      Beispiel
+        & $\max [1, 3, 2]
+          \begin{bmatrix}
+            x_1\\x_2\\x_3
+          \end{bmatrix}$
+        & $a^1: \; [0,1,1]
+          \begin{bmatrix}
+            x_1\\x_2\\x_3
+          \end{bmatrix} \leq 2$\newline
+          $a^2: \; [1,-2,0]
+          \begin{bmatrix}
+            x_1\\x_2\\x_3
+          \end{bmatrix} \leq -2$
+        & $x \geq 0$
+        \\
+      \hline
+      Spaltennotation
+        & $\max c x$ \newline
+        $c$ = Zeilenvektor $1 \times n$\newline
+        $x$ = Spaltenvektor $n \times 1$
+        & $\sum\limits_{j=1}^{n}A_j x_j \leq b$ \newline
+        $A_j$ = Spaltenvektor $n \times 1$ \newline 
+        $b$ = Spaltenvektor $n \times 1$
+        & $x \geq 0$
+        \\
+      Beispiel
+        & $\max [1,3,2]
+          \begin{bmatrix}
+            x_1\\x_2\\x_3
+          \end{bmatrix}$
+        & $\begin{bmatrix}
+            0\\1
+          \end{bmatrix} x_1 + 
+          \begin{bmatrix}
+            1\\-2
+          \end{bmatrix} x_2 + 
+          \begin{bmatrix}
+            1\\0
+          \end{bmatrix} x_3
+          \leq \begin{bmatrix}
+            2 \\ -2
+          \end{bmatrix}$
+        &  $x \geq 0$
+        \\
+      \hline
+      Matrixnotation
+        & $\max c x$ \newline
+        $c$ = Zeilenvektor $1 \times n$\newline
+        $x$ = Spaltenvektor $n \times 1$
+        & $A x \leq b$ \newline
+        $A$ = Matrix $m \times n$\newline
+        $b$ = Spaltenvektor $m \times 1$
+        & $x \geq 0$
+        \\
+      Beispiel
+        & $\max [1, 3, 2]
+          \begin{bmatrix}
+            x_1\\x_2\\x_3
+          \end{bmatrix}$
+        & $\begin{bmatrix}
+            0& 1 & 1\\
+            1& -2 & 0
+          \end{bmatrix}
+          \begin{bmatrix}
+            x_1\\x_2\\x_3
+          \end{bmatrix}
+          \leq \begin{bmatrix}
+            2 \\ -2
+          \end{bmatrix}$
+        &  $x \geq 0$
+        \\
+      \hline
+    \end{tabularx}
+
+
   \subsubsection{Normalformen}
     Ein lineares Programm kann in verschiedenen Formen geschrieben werden:
     
@@ -45,6 +144,8 @@
     Zusätzlich wird zwischen Maximierungs- und Minimierungsproblemen unterschieden.
     
   \subsubsection{Umformulierungen \skript{51}}
+   	Achtung: Freie Variable ($x_j = $ frei) und nicht positive ($x_i \leq 0$) als allererstes in allen Formulierungen (Funktion, Bedingungen) ersetzen!
+    	
     \begin{aufzaehlung}
       \item $x_j \leq 0 \qquad \rightsquigarrow \qquad x_j := -\bar{x}_j, \quad \bar{x}_j \geq 0$
       \item $x_j \text{ frei} \qquad \rightsquigarrow \qquad x_j := x_j^+ - x_j^-, \quad x_j^+, x_j^- \geq 0$
@@ -52,16 +153,46 @@
       \item $a^i x \leq b_i \qquad \rightsquigarrow \qquad -a^i x \geq -b_i$ bzw.\\
             $a^i x \geq b_i \qquad \rightsquigarrow \qquad -a^i x \leq -b_i$
       \item $a^i x \leq b_i \qquad \rightsquigarrow \qquad a^i x + x_i^s = b_i, \quad x_i^s \geq 0$ bzw.\\
-            $a^i x \geq b_i \qquad \rightsquigarrow \qquad a^i x - x_i^s = b_i, \quad x_i^s \geq 0$ \\
-      \item $\min \{cx: x \in P\} = - \max \{-cx: x \in P\}$
+            $a^i x \geq b_i \qquad \rightsquigarrow \qquad a^i x - x_i^s = b_i, \quad x_i^s \geq 0$
+      \item $\min \{cx\} \qquad \rightsquigarrow \qquad \max \{-cx\}$ \qquad \qquad bzw. \qquad $\max \{cx\} \qquad \rightsquigarrow \qquad \min \{-cx\}$\newline
+      $\min \{cx: x \in P\} = \textcolor{red}{-} \max \{-cx: x \in P\}$ \quad bzw. \quad $\max \{cx: x \in P\} = \textcolor{red}{-} \min \{-cx: x \in P\}$ (für Funktionsevaluation)
     \end{aufzaehlung}
-  
-  	Bemerkung: Freie Variable ($x_j \, frei$) und nicht positive ($x_i \leq 0$) als Erstes ersetzen!
   	
 	\todo{Beisiel Umformung von und in Standardform (Bild mit entstehender Projektion ersichtlich)}
-
-	\todo{Rangbestimmung Matrize, Eckunke und Hyperebenen bei Graph Bestimmung, Basislösungen ''zusammenbasteln"(zuläsig oder nicht?), Zeilen-, Spalten-, Matrix-Notation}
-
+	
+	\subsubsection{Rang einer Matrix / Eckpunkte einer Matrix}
+	  $\rank(A)$ = Maximal Anzahl linear unabhängiger Spalten. Eine Matrix hat Eckpunkte, wenn sie vollen Spaltenrang hat. Dies ist erfüllt, wenn das Gleichungssystem $\lambda_1 \begin{bmatrix}
+   	  a_{11}\\a_{21}\\ \vdots
+ 	  \end{bmatrix} + 
+ 	  \lambda_2\begin{bmatrix}
+   	  a_{12}\\a_{22}\\ \vdots
+ 	  \end{bmatrix} ...
+ 	  = \underline{0} = \begin{bmatrix}
+ 	     	  0\\0\\ \vdots
+ 	  \end{bmatrix}$ nur für $\lambda_1 = \lambda_2 = ... = 0$ erfüllt wird.
+ 	  
+ 	\subsubsection{Graphische Darstellung}
+ 	  Achtung: Zum Darstellen der Funktion $f(x) = cx$ beim \em Minimieren \em, ist es weniger fehleranfällig, wenn $f(x) = -cx$  gewählt wird!
+ 	  
+ 	  \includegraphics[width=7cm]{./Content/LinProg/Hyperplanes}
+ 	  
+  \subsubsection{Hyperebenen}
+    Die definierenden Hyperebenen sind die Gleichungen, welche den Optimierungsbereich abgrenzen, d.h. pro Gleichung oder Bedingung (in bspw. $Ax \leq b$) entsteht eine Hyperebene. Die Notation lautet z.B. $H_1 = \{x \in \mathbb{R}^3: x_1 + x_2 + x_3 = 2\}$. Es sind bis zu $\binom{m}{n}$ Auswahlmöglichkeiten vorhanden ($m$ = \#Gleichungen, $n$ = \#Variablen).
+    
+  \subsubsection{Basisauswahl}
+    Es sind bei $n$ Dimensionen $n$ Zeilen auszuwählen. Dabei sollen doppelte Gleichungen von Anfang an ignoriert werden.
+    
+    Aus Übung 3-2e: $B_1 = \{1,3,5\}:$\\
+    $x_{B_1} = \begin{bmatrix}
+      1 & 1 & 1\\
+      0 & 1 & 0\\
+      -1 & 0 & 0\\
+    \end{bmatrix}^{-1} \begin{bmatrix}
+      2\\ 1 \\0
+    \end{bmatrix} \underbrace{=}_{\text{Zeilen müssen linear unabhängig sein!}} \begin{bmatrix}
+      0\\ 1 \\ 1
+    \end{bmatrix} \underbrace{=}_{\text{Wenn Eckpunkt, dann ist Basisauswahl zulässig}} v_k$
+    
 \subsection{Simplex Algorithmus \skript{56}}
   Siehe auch Übungen 4, Aufgabe 3.
   
