@@ -5,12 +5,15 @@
 
 \textbf{Satz von Schwarz:} $\frac{\partial^2 f(x_1, x_2)}{\partial x_1 \partial x_2} = \frac{\partial^2 f(x_1, x_2)}{\partial x_2 \partial x_1}$
 
+\begin{minipage}[t]{0.4\linewidth}
 \subsection{Gradient}
-Der Gradient zeigt immer in Richtung des steilsten Anstiegs der Funktion $f$ und steht senkrecht auf den Höhenlinien.
+Der Gradient zeigt immer in Richtung des steilsten Anstiegs der Funktion $f$ und steht senkrecht auf den Höhenlinien.\\
+
+
 $\nabla f =\begin{bmatrix}
 f_{x_1}\\
 f_{x_2}\\
-v_dots\\
+\vdots\\
 f_{x_n}
 \end{bmatrix}=\begin{bmatrix}
 \partFrac{f}{x_1}\\[0.1cm]
@@ -18,7 +21,15 @@ f_{x_n}
 \vdots\\[0.1cm]
 \partFrac{f}{x_n}
 \end{bmatrix}$
- 
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.58\linewidth}
+	\subsection{Algebraisch Extrema bestimmen}
+	\textbf{Alle Ränder müssen seperat ansgeschaut werden!!!}\\
+	(Randwerte einsetzen, dann in verbliebene Richtungen ableiten)\\
+	
+	\boxed{\includegraphics[width=0.9\linewidth]{./Content/NonLinearOptimization/maxMin}}\\
+\end{minipage}
 
 \subsection{Gradientenverfahren}
   \begin{minipage}{9cm}
