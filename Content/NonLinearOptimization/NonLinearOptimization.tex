@@ -60,7 +60,7 @@ f_{x_n}
  \subsubsection{Algorithmus (zur Minimierung)}
  
  \begin{enumerate}
-	\item $\beta_1=0$\quad$\beta_3=1$\quad $h(\beta_3)=f\Bigl(\vec{x}^{(i)} - \beta_3 \nabla f(\vec{x}^{(i)})\Bigr)$
+	\item $\beta_1=0$\quad$\beta_3=1$\qquad$h(\beta_i)=f\Bigl(\vec{x}^{(i)} - \beta_i \nabla f(\vec{x}^{(i)})\Bigr)$
 	\item $while\Bigl(h(\beta_3)\geq h(\beta_1)\Bigl)\Bigl\{\beta_3=\frac{\beta_3}{2}\Bigr\}$
 	\item Parabel konstruieren: $P(\beta)=A\beta^2+B\beta+C$\quad mit \quad $\beta_1=0$,\quad $\beta_2=\beta_3/2$\\
 		$\begin{bmatrix}
@@ -76,8 +76,8 @@ f_{x_n}
 		\frac{2h(\beta_1)-4h(\beta_2)+2h(\beta_3)}{\beta_3^2}\\[0.2cm]
 		\frac{-3h(\beta_1)+4h(\beta_2)-h(\beta_3)}{\beta_3}\\[0.1cm]
 		h(\beta_1)\end{bmatrix}$
-  	\item $if\Bigl(P(\beta_3)<P(-B/2A)=\frac{\beta_3\bigl(3h(\beta_1)-4h(\beta_2)+h(\beta_3)\bigr)}{4\bigl(h(\beta_1)-h(\beta_2)h(\beta_3)\bigr)}\Bigr)\Big\{\hat{a}=\beta_3\Big\}$\\
-  	$else\Big\{\hat{a}=P(-B/2A)=\frac{\beta_3\bigl(3h(\beta_1)-4h(\beta_2)+h(\beta_3)\bigr)}{4\bigl(h(\beta_1)-h(\beta_2)h(\beta_3)\bigr)}\Big\}$
+  	\item $if\Bigl(P(\beta_3)<P(-B/2A)\Bigr)\Big\{\hat{a}=\beta_3\Big\}$\\
+  	$else\Big\{\hat{a}=P(-B/2A)\Big\}$
   	\item $\vec{x}^{(i+1)} = \vec{x}^{(i)} - \hat{\alpha}\nabla f(\vec{x}^{(i)})\quad\Rightarrow\quad $Punkt $ 1.$
   	
   	
