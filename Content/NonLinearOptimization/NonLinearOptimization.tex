@@ -76,7 +76,7 @@ f_{x_n}
 		\frac{2h(\beta_1)-4h(\beta_2)+2h(\beta_3)}{\beta_3^2}\\[0.2cm]
 		\frac{-3h(\beta_1)+4h(\beta_2)-h(\beta_3)}{\beta_3}\\[0.1cm]
 		h(\beta_1)\end{bmatrix}$
-  	\item $if\Bigl(h(\beta_3) = P(\beta_3)\leq-B/2A\Bigr)\Big\{\hat{a}=\beta_3\Big\}$\\
+  	\item $if\Bigl( (h(\beta_3) = P(\beta_3))\leq-B/2A\Bigr)\Big\{\hat{a}=\beta_3\Big\}$\\
   	$else\Big\{\hat{a}=-B/2A\Big\}$
   	\item $\vec{x}^{(i+1)} = \vec{x}^{(i)} - \hat{a}\nabla f(\vec{x}^{(i)})\quad\Rightarrow\quad $Punkt $ 1.$
   	
@@ -137,12 +137,6 @@ f_{x_n}
     \frac{\partial^2 f}{\partial x_2\partial x_1}(x)&\frac{\partial^2 f}{\partial x_2\partial x_2}(x)&\cdots&\frac{\partial^2  f}{\partial x_2\partial x_n}(x)\\
     \vdots&\vdots&\ddots&\vdots\\
     \frac{\partial^2 f}{\partial x_n\partial x_1}(x)&\frac{\partial^2 f}{\partial x_n\partial x_2}(x)&\cdots&\frac{\partial^2  f}{\partial x_n\partial x_n}(x)
-    \end{pmatrix}$$
-    und dem Gradienten
-    $$\nabla f(\vec{x}) = \begin{pmatrix}
-       \frac{\partial f}{\partial x_1}\\
-       \vdots\\
-       \frac{\partial f}{\partial x_n}\\
     \end{pmatrix}$$
     (4 Funktionsaufrufe für Diagonalelemente, sonst 3 Funktionsaufrufe)\\
     
