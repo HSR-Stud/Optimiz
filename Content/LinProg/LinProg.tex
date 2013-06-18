@@ -176,26 +176,52 @@
  	  \end{bmatrix}$ nur für $\lambda_1 = \lambda_2 = ... = 0$ erfüllt wird.
  	  
  	\subsubsection{Graphische Darstellung}
- 	  Achtung: Zum Darstellen der Funktion $f(x) = cx$ beim \em Minimieren \em, ist es weniger fehleranfällig, wenn $f(x) = -cx$  gewählt wird!
+ 	  Achtung: Minimierung: $-c$ Richtung! Maximierung: $+c$ Richtung!
  	  
  	  \includegraphics[width=7cm]{./Content/LinProg/Hyperplanes}
  	  
   \subsubsection{Hyperebenen}
-    Die definierenden Hyperebenen sind die Gleichungen, welche den Optimierungsbereich abgrenzen, d.h. pro Gleichung oder Bedingung (in bspw. $Ax \leq b$) entsteht eine Hyperebene. Die Notation lautet z.B. $H_1 = \{x \in \mathbb{R}^3: x_1 + x_2 + x_3 = 2\}$. Es sind bis zu $\binom{m}{n}$ Auswahlmöglichkeiten vorhanden ($m$ = \#Gleichungen, $n$ = \#Variablen).
+    Die definierenden Hyperebenen sind die Gleichungen, welche den Optimierungsbereich abgrenzen, d.h. pro Gleichung oder Bedingung (in bspw. $Ax \leq b$) entsteht eine Hyperebene. Die Notation lautet z.B. $H_1 = \{x \in \mathbb{R}^3: x_1 + x_2 + x_3 = 2\}$. Die maximale Anzahl von Hyperebenen ist gleich der Anzahl Gleichungen.
     
   \subsubsection{Basisauswahl}
     Es sind bei $n$ Dimensionen $n$ Zeilen auszuwählen. Dabei sollen doppelte Gleichungen von Anfang an ignoriert werden.
+    Es sind bis zu $\binom{m}{n}$ Auswahlmöglichkeiten vorhanden ($m$ = \#Gleichungen, $n$ = \#Variablen).
     
-    Aus Übung 3-2e: $B_1 = \{1,3,5\}:$\\
-    $x_{B_1} = \begin{bmatrix}
-      1 & 1 & 1\\
-      0 & 1 & 0\\
-      -1 & 0 & 0\\
-    \end{bmatrix}^{-1} \begin{bmatrix}
-      2\\ 1 \\0
-    \end{bmatrix} \underbrace{=}_{\text{Zeilen müssen linear unabhängig sein!}} \begin{bmatrix}
-      0\\ 1 \\ 1
-    \end{bmatrix} \underbrace{=}_{\text{Wenn Eckpunkt, dann ist Basisauswahl zulässig}} v_k$
+    \[ A \in \mathbb{R}^{m\times n} \qquad P = \{ x \in \mathbb{R}^{m\times n} : A x \leq b \} \qquad \qquad \text{Basisauswahl: }B\subseteq \{1,2,...,n\} \qquad  A_B : \text{ Basis von }A \]
+    
+    \textbf{Bsp.:}
+    \[  A=
+    	\begin{bmatrix}
+    		\textcolor{red}{1} & \textcolor{red}{0} \\
+    		1 & 1 \\
+    		\textcolor{red}{-1} & \textcolor{red}{1} \\
+    		0 & -1
+    	\end{bmatrix}
+    	\qquad
+    	B=\{1,3\} \longrightarrow A_B = 
+    	\begin{bmatrix}
+ 	    		1 & 0 \\
+ 	    		-1 & 1
+    	 \end{bmatrix}
+    \]
+    
+    
+  \subsubsection{Basislösung}
+  	Berechnung der Basislösung von $P = \{ x \in \mathbb{R}^{m\times n} : A x \leq b \}$ und $B\subseteq \{1,2,...,n\}$:
+  	\[ x = A_B^{-1} \cdot b_B \]
+  	Die \textbf{Basislösung} ist \textbf{gültig} wenn $\mathbf{x \in P}$ und entspricht dann einem Eckpunkt $v=x$ des Polyeders $P$!!!!
+    Um die Basislösung zu bestimmen muss $\mathbf{\det(A_B)\neq 0}$ sein (linear unabhängig).
+    
+%    Aus Übung 3-2e: $B_1 = \{1,3,5\}:$\\
+%    $x_{B_1} = \begin{bmatrix}
+%      1 & 1 & 1\\
+%      0 & 1 & 0\\
+%      -1 & 0 & 0\\
+%    \end{bmatrix}^{-1} \begin{bmatrix}
+%      2\\ 1 \\0
+%    \end{bmatrix} \underbrace{=}_{\text{Zeilen müssen linear unabhängig sein!}} \begin{bmatrix}
+%      0\\ 1 \\ 1
+%    \end{bmatrix} \underbrace{=}_{\text{Wenn Eckpunkt, dann ist Basisauswahl zulässig}} v_k$
     
 %\subsection{Simplex Algorithmus \skript{56}}
 %  Siehe auch Übungen 4, Aufgabe 3.
