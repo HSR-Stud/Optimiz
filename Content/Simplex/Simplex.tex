@@ -4,7 +4,7 @@
 \item \textbf{Vorbereitung:}\\
 	\begin{itemize}
 	\item \textbf{Lineares Programm (LP) in Ungleichungsform bringen:}\\
-	$\boxed{\max\{\mathbf{x}\in\mathbb{R}^n:\mathbf{Ax}\leq \mathbf{b}\}}$\quad(Alle Nebenbedingungen mit $\leq$ formulieren)
+	$\boxed{\max\{\mathbf{c} \mathbf{x}, \mathbf{x}\in\mathbb{R}^n :\mathbf{Ax}\leq \mathbf{b}, \mathbf{x} \geq 0\\}$\quad(Alle Nebenbedingungen mit $\leq$ formulieren; $\mathbf{c}$ ist ein Zeilenvektor)
 	\item \textbf{Erste zulässige Basisauswahl} $B=\begin{Bmatrix}\ldots\end{Bmatrix}$, für beliebigen Eckpunkt (Vertex) des Polyeders, \textbf{treffen:}\\
 	Bei Vorgabe einer Ecke bilden die Ungleichungen welche diese Ecke definieren, die erste Basis.
 	\end{itemize}
@@ -18,7 +18,7 @@
 	\item Berechnung der \textbf{''reduzierten Kosten''}: $\boxed{\mathbf{u}=\mathbf{c\overline{A}}}$
 	\begin{itemize}
 		\item $u_i<0$: Den ''negativsten'' Wert $u_j$ von $\mathbf{u}$ und die dazugehörige Spalte $\mathbf{\overline{a}}_j$ von $\mathbf{\overline{A}}$ bestimmen.\\
-		(Wenn die j-te Zahl in u der ''negativsten'' Zahl entspricht so ist die j-te Spalte in $\mathbf{\overline{A}}$ die dazugehörige Spalte)
+		(Wenn die $j$-te Zahl in $u$ der ''negativsten'' Zahl entspricht so ist die $j$-te Spalte in $\mathbf{\overline{A}}$ die dazugehörige Spalte). Behalte $j$ als Index der ursprünglichen Matrix $\mathbf{A}$!
 		\item $u_i\geq 0$: Wenn $\mathbf{u}$ keine negativen Werte aufweist, wurde das Maximum der Zielfunktion gefunden:\\
 		\textbf{Argument der Maximalstelle:} $\boxed{\mathbf{x^*}=\mathbf{v}}$\\
 		\textbf{Maximalstelle:} 
@@ -33,16 +33,18 @@
 	\item \textbf{Bewegung in Richtung von} $\mathbf{d}$ solange \textbf{alle} Nebenbedingungen erfüllt.\\
 	
 	$\boxed{\mathbf{A}(\mathbf{v}+\lambda\cdot \mathbf{d})\leq \mathbf{b}}\quad\Rightarrow\quad\lambda^*$\quad($\lambda^*$ ist der Maximalwert von $\lambda$ welcher alle Nebenbedingungen noch erfüllt.)\\
+		
+	Berechnung von $k$: $\lambda^* = \min\limits_k \left\{ \frac{b_k-(Av)_k}{(Ad)_k}: k \in \{1, ..., m\}, (Ad)_k > 0\right\}$
+		
 	\begin{itemize}
 		\item $0\leq\lambda^*<\infty$\qquad \textbf{Weiter mit (f):} Zielfunktion in Richtung $\mathbf{d}$ durch Bedingung $k$ beschränkt
 		\item $\lambda^*\rightarrow\infty$\qquad\quad~ \textbf{Abbruch:} Zielfunktion wächst unbeschränkt in Richtung von $\mathbf{d}$
 	\end{itemize}
-	\item \textbf{Basistausch:} $B'(j)=k$\qquad $\boxed{\mathbf{v'}=\mathbf{v}+\lambda^*\cdot \mathbf{d}}$\quad (Die Basis an $j$-ter Stelle in B wird durch $k$ ersetzt)\\
+	\item \textbf{Basistausch:} $B'(j)=k$ bzw. $B' = B - (\{j\} \cup \{k\})$\qquad $\boxed{\mathbf{v'}=\mathbf{v}+\lambda^*\cdot \mathbf{d}}$\quad (Die Basis an $j$-ter Stelle in B wird durch $k$ ersetzt)\\
 	
 	\textbf{Setze} $\boxed{B:=B'}$,\quad $\boxed{\mathbf{v}:=\mathbf{v'}}$ und \textbf{beginne bei Punkt (a)}
 	\end{enumerate}
 \end{enumerate}
-
 
 \subsection{Beispiel:}
 Das unten stehende LP-System soll mittels Simplexalgorithmus gelöst werden. Es soll im Punkt $V_0=\begin{bmatrix}0 & 1\end{bmatrix}$ begonnen werden.\\
