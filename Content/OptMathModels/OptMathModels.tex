@@ -34,7 +34,7 @@
   \end{tabular}
   
   \subsubsection{Beispiel für Modellierung (Klinkert, Übung 4, Aufgabe 5)}
-  Aus den Edelmetallen I sollen die Legierungen J gemischt werden. Der Erlös soll maximiert werden.\\
+  Aus den Edelmetallen $I$ sollen die Legierungen $J$ gemischt werden. Der Erlös soll maximiert werden.\\
   Mengen:\\
   \begin{tabular}{lll}
     $I$ & Menge der Edelmetalle, &$I = \{1, \ldots, m\}$\\
@@ -70,7 +70,55 @@
     \includegraphics[width=10cm]{./Content/OptMathModels/OptimiziationModel}
   \end{center}
   
-  \todo{Problemformulierung, Zulässigkeit, Beschränktheit, Abgeschlossenheit, Restriction, Unterscheidung Lokales-Globales Optimum, Eigenschaften von convexen und konkaven Funktionen}
+  \begin{tabularx}{\textwidth}{p{7cm} X}
+  \hline
+    \textbf{Problemformulierung} & \\
+  \hline
+    Allgemeines Optimierungsproblem
+      & $\Pi: \max\{f(x) : x \in S\}$ wobei $S \subseteq \mathbb{R}^n$\\
+    Entscheidungsvariablen/Variablen (\em decision variables/variables\em)
+      & Vektor $x = (x_1, ..., x_n) \in \mathbb{R}^n$\\
+    Lösungsmenge/Lösungsraum (\em solution space, feasible region\em)
+      & $S$ von $\Pi$\\
+    Zielfunktion
+      & $f: S \rightarrow \mathbb{R}$\\
+    Zulässigkeit (\em feasibility\em)
+      & Lösungsraum darf nicht leer sein ($S \neq 0$)\\
+    Beschränktheit (\em bounded\em)
+      & $f(x) \leq \omega,\, \omega \in \mathbb{R}$ für alle $x \in S$\\
+    Abgeschlossenheit (\em closed\em)
+      & Zusätzlich zu Zulässigkeit und Beschränktheit: $x^* \in S$ (Optimallösung existiert)\\
+  \hline
+    \textbf{Definition des Lösungsraums} & \\
+  \hline
+    Funktionale Restriktionen (\em functional constraints\em)
+      & $p\geq 0$ Ungleichungen der Form $g_i(x) \leq 0$, \newline
+        $q \geq 0$ Ungleichungen der Form $h_j(x) = 0$.\newline
+        $g_i(x), h_j(x)$ sind lineare Funktionen!\\
+    Nicht-funktionale Restriktionen 
+      & Definition des Lösungsraums $S$ durch "`nicht-funktionale"' Restriktionen, z.B. logische Prädikate (z.B. $S=\{x \in \mathbb{Z}^n: x \text{ ist eine Permutation der Zahlen } 1,...,n \}$) \\
+  \hline
+    \textbf{Maximierungs-/Minimierungsprobleme} & Beides möglich, Umwandlung siehe \ref{sec:linprog_umwandlungen}\\
+  \hline
+    Extremwert-Theorem von Weierstrasse
+      & Wenn $S \subseteq \mathbb{R}^n$ eine nichtleere, begrenzte, abgeschlossene Menge und $f: S \rightarrow \mathbb{R}$ eine stetige Funktion ist, existiert ein $x^* \in S$ mit $f(x^*) \geq f(x)$
+       für alle $x \in S$, d.h. das Optimierungsproblem hat eine Optimallösung.\\
+  \hline
+    \textbf{Nachbarschaft (\em Neighbourhood\em)} & Beliebige Menge Punkte "`in der Nähe"' des aktuellen Punktes $x$\\
+  \hline
+    Euklidische Nachbarschaft
+      & $N_\epsilon(x) = \{ y \in \mathbb{R}^n: ||y-x|| \leq \epsilon \}$ mit $\epsilon > 0$, $||x|| = \sqrt{x^2} = \sqrt{x_1^2 + ... + x_n^n}$ (in $\mathbb{R}^2$ eine Kreis, $\mathbb{R}^3$ eine Kugel, etc.)\\
+    Andere Nachbarschaften
+      & Es sind auch andere Nachbarschaftsdefinitionen möglich (ohne Bsp.)\\
+  \hline
+    \textbf{Optima} &\\
+  \hline
+      Globale Optimallösung
+      & $x^*$ ist eine globale Optimallösung wenn $f(x^*) \geq f(x)$ für alle $x \in S$.\\
+    Lokale Optima
+      & $x^*$ ist eine lokale Optimallösung (bzgl. Nachbarschaft $N_\epsilon$) wenn $f(x^*) \geq f(x)$ für alle $x \in N_\epsilon(x^*) \cap S$\\    
+  \end{tabularx}
+  
 
 \subsection{Konvexe Optimierung \skript{40}}
   Jede lokale Optimierung entspricht einem globalen Optimum!
@@ -78,8 +126,8 @@
   Konvexe Menge:\\
   \includegraphics[width=8cm]{./Content/OptMathModels/ConvexSet}
   
+    \todo{Eigenschaften von convexen und konkaven Funktionen}
   \todo{Konvexe Funktion reinnehmen, Maximum, Minimum, Global oder nicht?}\\
-  \todo{Nachbarschaften reinnehmen}\\
   \todo{Mengenlehre reinnehmen}
 \subsection{Typen von Optimierungsmodellen und -methoden \skript{46}}
 
