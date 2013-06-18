@@ -25,7 +25,7 @@
   Eulerkreis
     & Kreis, der jede Kante des Graphen genau ein Mal enthält\\
   Hamiltonkreis
-    & Kreis, der alle Ecken genau ein Mal besucht und zudem in der Startecke endet\\
+    & Kreis, der alle Ecken genau ein Mal besucht und zudem in der Startecke startet und endet\\
   Euler-/Hamiltongraph
     & Wenn Graph einen Euler- oder Hamiltonkreis enthält\\
 \end{tabularx}
@@ -103,7 +103,8 @@ Setzt Kanten ($O(m \log(m))$)
 
 
 \subsubsection{MST-Heuristik}
-Hamiltonkreis aus MST generieren (Lösung muss nicht optimal sein!, Löst das TSP)
+Generiert Hamiltonkreis aus MST (Lösung muss nicht optimal sein!, Löst das TSP)
+
 \begin{enumerate}
 	\item Jede Kante im MST verdoppeln (Eulergraphen)
 	\item Eulerkreis auswählen (durchläuft alle Kanten)
@@ -366,8 +367,15 @@ Vorgehen ist problematisch, da es nicht erlaubt ist, Flüsse in entgegen den Pfe
 \newpage
 % Maxflow Mincost
 \subsection{Maxflow Mincost}
-Die Lösung des Max Flow Problems ist nicht eindeutig, darum können weitere Kriterien hinzugefügt werden.
+Die Lösung des Max Flow Problems ist nicht eindeutig, darum können weitere Kriterien hinzugefügt werden.\\
 
+\textbf{Tipps:}
+\begin{itemize}
+\item Grosse Kreise zeichnen, damit Pfeilrichtungen eindeutig erkennbar.
+\item Zweige mit geringen Transportkosten zuerst invertieren, um mit grosser wahrscheinlichkeit negative Kreise zu unterbinden.
+\end{itemize} 
+
+\textbf{Vorgehen:}
 \begin{enumerate}
 	\item Ford-Fulkerson anwenden ($f_{tot}$ bleibt konstant!)
 	\item Restnetzwerk durch Kantenkosten $k$ erweitern (Vorwärtskante: $+k$, Rückwertskante: $-k$)
