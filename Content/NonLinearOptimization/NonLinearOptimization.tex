@@ -170,13 +170,16 @@ f_{x_n}
   $F'(x^{(i+1)})\approx\frac{F'(x^{(i+1)})-F'(x^{(i)})}{x^{(i+1)}-x^{(i)}}$\\
   
  \begin{enumerate}
- \item Hesse-Matrix bestimmen: $\mathbf{H}(\vec{x}^{(0)})$\\
- Gradient bestimmen: $\nabla f(\vec{x}^{(0)})$
- \item $\mathbf{A}_{0}^{-1}=\bigl(\mathbf{H}(\vec{x}^{(0)})\bigr)$
- \item $\vec{x}^{(1)}=\vec{x}^{(0)}-\mathbf{A}_{0}^{-1}\cdot\nabla f(\vec{x}^{(0)})$
- \item $\mathbf{A}_{i}^{-1}=\mathbf{A}_{i-1}^{-1}-\displaystyle\frac{\bigl(\mathbf{A}_{i-1}^{-1}\cdot \vec{y}_i-\vec{s}_i\bigr)\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}}{\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}\cdot\vec{y}_i}\qquad i\geq 1\\
- \vec{y}_i=\nabla f(\vec{x}^{(i)})-\nabla f(\vec{x}^{(i-1)})\qquad \vec{s}_i=\vec{x}^{(i)}-\vec{x}^{(i-1)}$
- \item $\vec{x}^{(i+1)}=\vec{x}^{(i)}-\mathbf{A}_{i}^{-1}\cdot\nabla f(\vec{x}^{(i)})$
+ \item \textbf{Ein Schritt Newton-Verfahren:}
+	 \begin{enumerate}
+	 \item[(a)] Hesse-Matrix bestimmen: $\mathbf{H}(\vec{x}^{(0)})$\\
+	 Gradient bestimmen: $\nabla f(\vec{x}^{(0)})$
+	 \item[(b)] $\mathbf{A}_{0}^{-1}=\bigl(\mathbf{H}(\vec{x}^{(0)})\bigr)^{-1}$
+	 \item[(c)] $\vec{x}^{(1)}=\vec{x}^{(0)}-\mathbf{A}_{0}^{-1}\cdot\nabla f(\vec{x}^{(0)})$\\
+	 \end{enumerate}
+ \item $\vec{y}_i=\nabla f(\vec{x}^{(i)})-\nabla f(\vec{x}^{(i-1)})\qquad \vec{s}_i=\vec{x}^{(i)}-\vec{x}^{(i-1)} \qquad i\geq 1$
+ \item $\mathbf{A}_{i}^{-1}=\mathbf{A}_{i-1}^{-1}-\displaystyle\frac{\bigl(\mathbf{A}_{i-1}^{-1}\cdot \vec{y}_i-\vec{s}_i\bigr)\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}}{\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}\cdot\vec{y}_i}\qquad i\geq 1$\\
+ \item $\vec{x}^{(i+1)}=\vec{x}^{(i)}-\mathbf{A}_{i}^{-1}\cdot\nabla f(\vec{x}^{(i)})$\qquad zu Punkt 4.
  \end{enumerate}
  
 \end{minipage}
@@ -197,7 +200,7 @@ f_{x_n}
  \subsection{Konvergenzbeschleunigung}
  \textbf{Idee:} Mit der sogenannten Aitken'sche   $\nabla^2$–Methode wird aus der Folge $\{x_i\}$ die die schneller konvergierende Folge $\{\hat{x}_i\}$ berechnet.\\
  
- Aitken $\nabla^2$-Methode:\quad $\boxed{\hat{x}=x_i-\frac{(x_{i+1}-x_i)^2}{x_{i+2}-2x_{i+1}+x_{i}}}$
+ Aitken $\nabla^2$-Methode:\quad $\boxed{\hat{x}=x_i-\frac{(x_{i+1}-x_i)^2}{x_{i+2}-2x_{i+1}+x_{i}}}$\qquad $i\geq 0$ %\qquad (Formel dimensionsweise anwenden, für $x_1$, $x_2$, $\ldots$)
  
  
  
