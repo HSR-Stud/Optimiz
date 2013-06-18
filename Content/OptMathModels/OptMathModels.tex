@@ -29,7 +29,7 @@
     \hline
     Restriktionen / Constraints ($k_{i}, k_i^{out}$)
       & - 
-      & Bedingungen auf den Konsequenzen (meist Ungleichungen oder Gleichungen)\\
+      & Bedingungen auf den Konsequenzen (Ungleichungen, selten Gleichungen) ACHTUNG: 'Idiotische' Bedingungen nicht vergessen: Keine negativen Mengen produzieren, etc.\\
     \hline
   \end{tabular}
   
@@ -55,8 +55,9 @@
     max $\sum_{j \in J}c_j x_j$\\
   \end{tabular}\\
   Restriktionen:\\
-  \begin{tabular}{ll}
-    $\sum_{j \in J}a_{ij}x_j \le b_i$ & $i \in I$
+  \begin{tabular}{lll}
+    $\sum_{j \in J}a_{ij}x_j \le b_i$ & $i \in I$ & (nicht mehr Legierung produzieren als Edelmetall vorhanden)\\
+    $x_j \ge 0$                       & $j \in J$ & (nicht negative Mengen Legierungen produzieren)
   \end{tabular}\\
 
 
