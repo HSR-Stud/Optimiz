@@ -23,17 +23,43 @@
       & Output des deskriptiven Modells (z.B. gesamte Fahrdistanz), $k_0 = f_0(x,p)$ 
       & -\\
     \hline
-    Restriktionen / Constraints ($k_{i}, k_i^{out}$)
-      & - 
-      & Bedingungen auf den Konsequenzen (meist Ungleichungen oder Gleichungen)\\
-    \hline
     Zielfunktion $\min$ oder $\max$
       & - 
       & Zu maximierende oder minimierende Konsequenz\\
     \hline
+    Restriktionen / Constraints ($k_{i}, k_i^{out}$)
+      & - 
+      & Bedingungen auf den Konsequenzen (meist Ungleichungen oder Gleichungen)\\
+    \hline
   \end{tabular}
   
-  \todo{Beispiel}
+  \subsubsection{Beispiel für Modellierung (Klinkert, Übung 4, Aufgabe 5)}
+  Aus den Edelmetallen I sollen die Legierungen J gemischt werden. Der Erlös soll maximiert werden.\\
+  Mengen:\\
+  \begin{tabular}{lll}
+    $I$ & Menge der Edelmetalle, &$I = \{1, \ldots, m\}$\\
+    $J$ & Menge der Legierungen, &$J = \{1, \ldots, n\}$
+  \end{tabular}\\
+  Parameter:\\
+  \begin{tabular}{lll}
+    $a_{ij}$ & Menge von Edelmetall $i$ pro Menge Legierung $j$ & $i \in I, j \in J$\\
+    $b_i$    & Verfügbare Menge von Edelmetall $i$              & $i \in I$\\
+    $c_i$    & Erlös pro Menge Legierung $j$                    & $j \in J$\\
+  \end{tabular}\\
+  Variablen:\\
+  \begin{tabular}{lll}
+    $x_j$ & Produktionsmenge von Legierung $j$ & $j \in J$\\
+  \end{tabular}\\
+  Zielfunktion:\\
+  \begin{tabular}{l}
+    max $\sum_{j \in J}c_j x_j$\\
+  \end{tabular}\\
+  Restriktionen:\\
+  \begin{tabular}{ll}
+    $\sum_{j \in J}a_{ij}x_j \le b_i$ & $i \in I$
+  \end{tabular}\\
+
+
 
 
 \subsection{Allgemeines Optimierungsproblem \skript{31}}
