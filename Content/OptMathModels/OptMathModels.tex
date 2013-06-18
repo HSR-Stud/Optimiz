@@ -111,23 +111,52 @@
     Andere Nachbarschaften
       & Es sind auch andere Nachbarschaftsdefinitionen möglich (ohne Bsp.)\\
   \hline
-    \textbf{Optima} &\\
+    \textbf{Diverses} &\\
   \hline
       Globale Optimallösung
       & $x^*$ ist eine globale Optimallösung wenn $f(x^*) \geq f(x)$ für alle $x \in S$.\\
     Lokale Optima
-      & $x^*$ ist eine lokale Optimallösung (bzgl. Nachbarschaft $N_\epsilon$) wenn $f(x^*) \geq f(x)$ für alle $x \in N_\epsilon(x^*) \cap S$\\    
+      & $x^*$ ist eine lokale Optimallösung (bzgl. Nachbarschaft $N_\epsilon$) wenn $f(x^*) \geq f(x)$ für alle $x \in N_\epsilon(x^*) \cap S$\\
+    Niveaumengen (Höhenlinien, \em level sets\em)
+      & Orthogonale Linien zu den linearen Funktionen (Geraden)\\      
   \end{tabularx}
   
 
 \subsection{Konvexe Optimierung \skript{40}}
-  Jede lokale Optimierung entspricht einem globalen Optimum!
+  \begin{tabularx}{\textwidth}{p{6cm} X}
+  \hline
+    \textbf{Definitionen} & \\
+  \hline
+    $\lambda$
+      & $\lambda \in \mathbb{R}$ mit $0 \leq \lambda \leq 1$\\
+    Konvexkombination zweier Vektoren
+      & $x^1, x^2 \in \mathbb{R}^n$:  $x = \lambda x^1 + (1-\lambda) x^2$ \\
+    Konvexe Funktion
+      & $f(\lambda x^1 + (1-\lambda)x^2) \leq \lambda f(x^1) + (1-\lambda)f(x^2)$ für alle $x^1, x^2 \in S$, $S$ konvex \newline
+      Deutsch: Lineare Interpolation zwischen $x^1$ und $x^2$ ist kleiner gleich als Funktion\\
+    Konkave Funktion
+      & $f(\lambda x^1 + (1-\lambda)x^2) \geq \lambda f(x^1) + (1-\lambda)f(x^2)$ für alle $x^1, x^2 \in S$, $S$ konvex \newline
+      Deutsch: Lineare Interpolation zwischen $x^1$ und $x^2$ ist grösser gleich als Funktion\\
+    Lineare Funktion
+      & Eine lineare Funktion ist sowohl konvex als auch konkav in $S$.\\
+    Konvexe Menge
+      & $\lambda x^1 + (1-\lambda)x^2 \in S$ für Vektoren $x^1,x^2 \in S \subseteq \mathbb{R}^n, \lambda \in \mathbb{R}, 0 \leq \lambda \leq 1$.\newline
+      \includegraphics[width=7cm]{./Content/OptMathModels/ConvexSet} \\
+    Konvexes Optimierungsproblem
+      & Ein konvexes Optimierungsproblem ist \em entweder \em die Maximierung einer konkaven Funktion $f$ über einer konvexen Menge $S$ \em oder \em die Minimierung einer konvexen Funktion $f$ über einer konvexen Menge $S$.\\
+  \hline  
+    \textbf{Eigenschaften} & \\
+  \hline
+    Globales Optimum
+      & In einem konvexen Optimierungsproblem ist jedes lokales Optimum ein globales Optimum! \\
+    Optimum auf Rand
+      & $S \subseteq \mathbb{R}^n$ sei eine konvexe, abgeschlossene, begrenzte Menge. Bei einem Optimierungsproblem der Form $\max\{ f(x) : x \in S \}$ (bzw. $\min\{ f(x) : x \in S \}$) mit $f$ konvex (bzw. konkav) in $S$ liegt jede lokale Optimallösung auf dem Rand. \newline 
+      \includegraphics[width=8cm]{./Content/OptMathModels/ConvexBorderSolution}
+      \\
+    Lineare Funktion
+      & Für den Fall einer linearen Funktion $f$ über einer konvexen, begrenzten, abgeschlossenen Menge $S$ gilt, dass jede lokale Optimallösung global optimal ist und sich am Rand von $S$ befindet!\\
+  \end{tabularx}
   
-  Konvexe Menge:\\
-  \includegraphics[width=8cm]{./Content/OptMathModels/ConvexSet}
-  
-    \todo{Eigenschaften von convexen und konkaven Funktionen}
-  \todo{Konvexe Funktion reinnehmen, Maximum, Minimum, Global oder nicht?}\\
   \todo{Mengenlehre reinnehmen}
 \subsection{Typen von Optimierungsmodellen und -methoden \skript{46}}
 
