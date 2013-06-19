@@ -33,20 +33,20 @@
     \hline
   \end{tabular}
   
-  \subsubsection{Modellierung}
-  Aus den Edelmetallen $I$ sollen die Legierungen $J$ gemischt werden. Der Erlös soll maximiert werden.\\
+  \subsubsection{Beispiel für Modellierung: Warenverteilung (Ähnlich, aber nicht identisch zu Klinkerts Mietwagenvermietung, Übung 1, Aufgabe 2 bzw. \skript{23})}
+  Eine Ware soll von Lagern an Filialen ausgeliefert werden mit minimalen Transportkosten.\\
   
   \textbf{Mengen:}\\
   \begin{tabular}{lll}
-    $I$ & Menge am Ausgangsort, &$I = \{1, \ldots, m\}$\\
-    $J$ & Menge am Zielort, &$J = \{1, \ldots, n\}$
+    $I$ & Menge der Lager, &$I = \{1, \ldots, m\}$\\
+    $J$ & Menge der Filialen, &$J = \{1, \ldots, n\}$
   \end{tabular}\\
   
   \textbf{Parameter:}\\
   \begin{tabular}{lll}
-    $a_{i}$ & Aktuelle Anzahl & $i \in I$ \\
-    $b_j$   & Benötigte Anzahl& $j \in J$\\
-    $c_{ij}$& Kosten für Beförderung & $i \in I, j \in J$\\
+    $a_{i}$ & Lagerbestand der Ware in Lager $i$& $i \in I$ \\
+    $b_j$   & Bedarf der Filiale $j$& $j \in J$\\
+    $c_{ij}$& Kosten für Beförderung von Lager $i$ nach Filiale $j$& $i \in I, j \in J$\\
   \end{tabular}\\
   
   \textbf{Variablen:}\\
@@ -60,33 +60,39 @@
   \end{tabular}\\
   
   \textbf{Restriktionen:}\\
-  \begin{tabular}{l}
-    $\sum\limits_{j \in J}x_{ij}\leq a_{i}$\\
-    $\sum\limits_{i \in I}x_{ij}\geq b_{j}$\\
+  \begin{tabular}{lll}
+    $\sum\limits_{j \in J}x_{ij}\leq a_{i}$ & $i \in I$          & (Nicht mehr Waren ausliefern als im Lager vorhanden)\\
+    $\sum\limits_{i \in I}x_{ij}\geq b_{j}$ & $j \in J$          & (Nicht weniger Waren ausliefern als benötigt)\\
+    $x_{ij} \ge 0$                          & $i \in I, j \in J$ & (Nicht negative Anzahl Waren ausliefern)\\
   \end{tabular}\\
   
-  \subsubsection{Beispiel für Modellierung (Klinkert, Übung 4, Aufgabe 5)}
+  \subsubsection{Beispiel für Modellierung: Legierungen (Klinkert, Übung 4, Aufgabe 5)}
     Aus den Edelmetallen $I$ sollen die Legierungen $J$ gemischt werden. Der Erlös soll maximiert werden.\\
-    Mengen:\\
+    
+    \textbf{Mengen:}\\
     \begin{tabular}{lll}
       $I$ & Menge der Edelmetalle, &$I = \{1, \ldots, m\}$\\
       $J$ & Menge der Legierungen, &$J = \{1, \ldots, n\}$
     \end{tabular}\\
-    Parameter:\\
+
+    \textbf{Parameter:}\\
     \begin{tabular}{lll}
       $a_{ij}$ & Menge von Edelmetall $i$ pro Menge Legierung $j$ & $i \in I, j \in J$\\
       $b_i$    & Verfügbare Menge von Edelmetall $i$              & $i \in I$\\
       $c_j$    & Erlös pro Menge Legierung $j$                    & $j \in J$\\
     \end{tabular}\\
-    Variablen:\\
+
+    \textbf{Variablen:}\\
     \begin{tabular}{lll}
       $x_j$ & Produktionsmenge von Legierung $j$ & $j \in J$\\
     \end{tabular}\\
-    Zielfunktion:\\
+
+    \textbf{Zielfunktion:}\\
     \begin{tabular}{l}
       max $\sum\limits_{j \in J}c_j x_j$\\
     \end{tabular}\\
-    Restriktionen:\\
+
+    \textbf{Restriktionen:}\\
     \begin{tabular}{lll}
       $\sum\limits_{j \in J}a_{ij}x_j \le b_i$ & $i \in I$ & (nicht mehr Legierung produzieren als Edelmetall vorhanden)\\
       $x_j \ge 0$                       & $j \in J$ & (nicht negative Mengen Legierungen produzieren)
