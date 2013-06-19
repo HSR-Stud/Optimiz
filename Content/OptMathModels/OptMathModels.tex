@@ -33,32 +33,64 @@
     \hline
   \end{tabular}
   
-  \subsubsection{Beispiel für Modellierung (Klinkert, Übung 4, Aufgabe 5)}
+  \subsubsection{Modellierung}
   Aus den Edelmetallen $I$ sollen die Legierungen $J$ gemischt werden. Der Erlös soll maximiert werden.\\
-  Mengen:\\
+  
+  \textbf{Mengen:}\\
   \begin{tabular}{lll}
-    $I$ & Menge der Edelmetalle, &$I = \{1, \ldots, m\}$\\
-    $J$ & Menge der Legierungen, &$J = \{1, \ldots, n\}$
+    $I$ & Menge am Ausgangsort, &$I = \{1, \ldots, m\}$\\
+    $J$ & Menge am Zielort, &$J = \{1, \ldots, n\}$
   \end{tabular}\\
-  Parameter:\\
+  
+  \textbf{Parameter:}\\
   \begin{tabular}{lll}
-    $a_{ij}$ & Menge von Edelmetall $i$ pro Menge Legierung $j$ & $i \in I, j \in J$\\
-    $b_i$    & Verfügbare Menge von Edelmetall $i$              & $i \in I$\\
-    $c_i$    & Erlös pro Menge Legierung $j$                    & $j \in J$\\
+    $a_{i}$ & Aktuelle Anzahl & $i \in I$ \\
+    $b_j$   & Benötigte Anzahl& $j \in J$\\
+    $c_{ij}$& Kosten für Beförderung & $i \in I, j \in J$\\
   \end{tabular}\\
-  Variablen:\\
+  
+  \textbf{Variablen:}\\
   \begin{tabular}{lll}
-    $x_j$ & Produktionsmenge von Legierung $j$ & $j \in J$\\
+    $x_{ij}$ & Verschobene Menge von $i$ nach $j$ & $i \in I, j \in J$\\
   \end{tabular}\\
-  Zielfunktion:\\
+  
+  \textbf{Zielfunktion:}\\
   \begin{tabular}{l}
-    max $\sum_{j \in J}c_j x_j$\\
+    min $\sum\limits_{i \in I,~j \in J}c_{ij} x_{ij}$\\
   \end{tabular}\\
-  Restriktionen:\\
-  \begin{tabular}{lll}
-    $\sum_{j \in J}a_{ij}x_j \le b_i$ & $i \in I$ & (nicht mehr Legierung produzieren als Edelmetall vorhanden)\\
-    $x_j \ge 0$                       & $j \in J$ & (nicht negative Mengen Legierungen produzieren)
+  
+  \textbf{Restriktionen:}\\
+  \begin{tabular}{l}
+    $\sum\limits_{j \in J}x_{ij}\leq a_{i}$\\
+    $\sum\limits_{i \in I}x_{ij}\geq b_{j}$\\
   \end{tabular}\\
+  
+  \subsubsection{Beispiel für Modellierung (Klinkert, Übung 4, Aufgabe 5)}
+    Aus den Edelmetallen $I$ sollen die Legierungen $J$ gemischt werden. Der Erlös soll maximiert werden.\\
+    Mengen:\\
+    \begin{tabular}{lll}
+      $I$ & Menge der Edelmetalle, &$I = \{1, \ldots, m\}$\\
+      $J$ & Menge der Legierungen, &$J = \{1, \ldots, n\}$
+    \end{tabular}\\
+    Parameter:\\
+    \begin{tabular}{lll}
+      $a_{ij}$ & Menge von Edelmetall $i$ pro Menge Legierung $j$ & $i \in I, j \in J$\\
+      $b_i$    & Verfügbare Menge von Edelmetall $i$              & $i \in I$\\
+      $c_j$    & Erlös pro Menge Legierung $j$                    & $j \in J$\\
+    \end{tabular}\\
+    Variablen:\\
+    \begin{tabular}{lll}
+      $x_j$ & Produktionsmenge von Legierung $j$ & $j \in J$\\
+    \end{tabular}\\
+    Zielfunktion:\\
+    \begin{tabular}{l}
+      max $\sum\limits_{j \in J}c_j x_j$\\
+    \end{tabular}\\
+    Restriktionen:\\
+    \begin{tabular}{lll}
+      $\sum\limits_{j \in J}a_{ij}x_j \le b_i$ & $i \in I$ & (nicht mehr Legierung produzieren als Edelmetall vorhanden)\\
+      $x_j \ge 0$                       & $j \in J$ & (nicht negative Mengen Legierungen produzieren)
+    \end{tabular}\\
 
 
 
@@ -157,6 +189,10 @@
       & Für den Fall einer linearen Funktion $f$ über einer konvexen, begrenzten, abgeschlossenen Menge $S$ gilt, dass jede lokale Optimallösung global optimal ist und sich am Rand von $S$ befindet!\\
   \end{tabularx}
   
-  \todo{Mengenlehre reinnehmen}
+\subsection{Mengenlehre}  
+
+\includegraphics[width=7cm]{./Content/OptMathModels/Mengenlehre}
+
+  
 \subsection{Typen von Optimierungsmodellen und -methoden \skript{46}}
 

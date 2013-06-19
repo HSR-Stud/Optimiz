@@ -31,6 +31,16 @@ f_{x_n}
 	\boxed{\includegraphics[width=0.9\linewidth]{./Content/NonLinearOptimization/maxMin}}\\
 \end{minipage}
 
+\subsection{Differential-Rechnung}
+$f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
+\frac{f(x_0+\Delta)x-f(x_0)}{\Delta x}$\\
+	\begin{tabular}{llll}
+		Kettenregel:	& $\Bigl(f\big(g(x)\big)\Bigr)'$ &$=$ & $g'(x)\cdot f'\big(g(x)\big)$\\[0.1cm]
+		%oder $\frac{d f(g(x))}{dx} = f'(g(x)) \cdot g'(x)$\\[0.1cm] 
+		Produktregel:	& $\Bigl(f(x)\cdot g(x)\Bigr)'$ &$=$ & $f'(x)\cdot g(x) + f(x)\cdot g'(x)$\\[0.1cm]
+		Quotientenregel:& $\left(\frac{f(x)}{g(x)}\right)'$ &$=$ & $\frac{f'(x)g(x)-f(x)g'(x)}{g^2(x)}$\\
+	\end{tabular}
+
 \subsection{Gradientenverfahren}
   \begin{minipage}{9cm}
     Von der Stelle $\vec{x}^{(i)}$ wird in Richtung des Antigradienten geschritten. 
