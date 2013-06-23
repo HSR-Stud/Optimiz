@@ -190,7 +190,7 @@ Der Minimale Weg von der Post zum Knoten A beträgt 5 und kann rückwärts rekon
 \subsubsection{Floyd-Warshall}
 Alle Kreise müssen ein nicht negatives Gewicht haben! Der Algo ist konzipiert für gerichtete Graphen, funktioniert auch für ungerichtete (beide Richtungen gleiches Gewicht).
 
-$shortestPath(i,j,k)$ gibt den kürzesten weg vom Knoten $v_i$ nach $v_j$, wobei der Weg über die ersten $k$ Knoten führen kann ($v_0,...,v_k$).
+$shortestPath(i,j,k)$ gibt den kürzesten weg vom Knoten $v_i$ nach $v_j$, wobei der Weg über die ersten $k$ Knoten führen kann ($v_0,...,v_{k-1}$).
 
 Die Funktion kann rekursiv implementiert werden:
 \[ shortestPath(i,j,k+1) = \min \begin{cases} shortestPath(i,j,k) \qquad \qquad \qquad \qquad \qquad \qquad \text{Weg bereits bekannt}\\ shortestPath(i,k,k)+shortestPath(k,j,k) \qquad  \text{Weg fürt nach $k$ und von dort nach $k+1$} \end{cases} \]
@@ -241,20 +241,15 @@ Jede Kante $vw$ hat jetzt auch eine Kapazität $c(vw)$, welche eine Obergrenze f
 % Reduktion auf Maxflow-Problem
 \subsection{Reduktion auf Maxflow-Problem}
 
-Viele bestehenden Probleme können auf Maxflow-Probleme reduziert werden:
-    
-    \begin{liste}
-      \item Mehrere Quellen und Senken können zu einer Quelle und einer Senke zusammengefasst werde (Bild rechts, Übung II.5/1).
-      \item Maximalwerte pro Ecke können mit zusätzliche Ecken hinzugefügt werden.
-      \item Angebots- und Nachfrageausgleich zw. Lieferanten und Konsumenten mit eingeschränkten Transportwegen. Hier werden die Lieferanten zu einer Quelle zusammengefasst (die Kantengewichte entsprechen dem Angebot des jeweiligen Lieferanten), dasselbe für die Konsumenten. (Übung II.5/2)
-    \end{liste}
+Viele bestehenden Probleme können auf Maxflow-Probleme reduziert werden.
+ 
 
 \begin{minipage}{0.6\textwidth}
-\textbf{Mehrere Quellen / Mehrere Senken:}\\
+\textbf{Mehrere Quellen / Mehrere Senken} (Übung II.5/1):\\
 	\begin{enumerate}
 		\itemsep-1mm
-		\item neue Quelle $s$ einführen (Kantenkapazitäten $c_s$ entsprechen der Summe der wegführenden Kapazitäten)
-		\item neue Senke $t$ einführen (Kantenkapazitäten $c_t$ entsprechen der Summe der hinführenden Kapazitäten)
+		\item Neue Quelle $s$ einführen (Kantenkapazitäten $c_s$ entsprechen der Summe der wegführenden Kapazitäten)
+		\item Neue Senke $t$ einführen (Kantenkapazitäten $c_t$ entsprechen der Summe der hinführenden Kapazitäten)
 	\end{enumerate}
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
@@ -262,19 +257,19 @@ Viele bestehenden Probleme können auf Maxflow-Probleme reduziert werden:
 \end{minipage}
 
 \textbf{Einschränkung durch Maximalkapazität:}\\
-Begernzungen durch einführen von zusatzt knoten.
+Begrenzungen durch Einführen von zusätzlichen Knoten.
 
 \begin{minipage}{0.6\textwidth}
 	\textbf{Begrenzte Output-Kapazität:}\\
 	
-	neun Knoten einführen (Kantenkapazitäten $c$ entspricht der beschränkten Output-Kapazitäten)
+	Neuen Knoten einführen (Kantenkapazitäten $c$ entspricht der beschränkten Output-Kapazitäten)
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
 	\includegraphics[width=\textwidth]{Content/Graphen/Constrain.pdf}
 \end{minipage}
 
 \begin{minipage}{0.33\textwidth}
-	\textbf{Logistik-Problem:}\\
+	\textbf{Logistik-Problem} (Übung II.5/2):\\
 	
 	Lieferanten 0, 1, 2 haben eine Angebotskapazität\\
 	Bezüger 3, 4, 5 haben eine Nachfrage\\
@@ -317,11 +312,11 @@ Begernzungen durch einführen von zusatzt knoten.
 
 \begin{minipage}{0.7\textwidth}
 	\begin{enumerate}
-		\item beliebiger Pfad von $s$ nach $t$ wählen
-		\item begrenzender Pfad ermitteln (kleinste Kapazität) $f_i$
-		\item abziehen von $f_i$ von den Kapazitäten des gewählten Pfades $f_j$ ($f_j-f_i$)
+		\item Beliebigen Pfad von $s$ nach $t$ wählen
+		\item Begrenzenden Pfad ermitteln (kleinste Kapazität) $f_i$
+		\item Abziehen von $f_i$ von den Kapazitäten des gewählten Pfades $f_j$ ($f_j-f_i$)
 		\item Wenn ein weiterer Pfad von $s$ nacht $t$ führt gehe zu  Punkt 1, andernfalls zu 5
-		\item der Gesamtfluss ist die summe aller begrenzten Flüsse $f_{tot} = \sum_{i=1} f_i$
+		\item Der Gesamtfluss ist die Summe aller begrenzten Flüsse $f_{tot} = \sum_{i=1} f_i$
 	\end{enumerate}
 \end{minipage}
 \begin{minipage}{0.3\textwidth}
@@ -337,10 +332,10 @@ Vorgehen ist problematisch, da es nicht erlaubt ist, Flüsse in entgegen den Pfe
 \begin{minipage}{0.7\textwidth}
 	\begin{enumerate}
 		\item Pfad von $s$ nach $t$ wählen
-		\item begrenzender Pfad ermitteln (kleinste Kapazität) $f_i$
-		\item abziehen von $f_i$ von den Vorwärtskanten $f_j$ und hinzufügen bei den Rückwertskanten $r_j$ des gewählten Pfades $f_j$, Existiert keine Rückwertskante muss diese eingefügt werden\\ ($f_j-f_i$ und $r_j + f_i$)
+		\item Begrenzenden Pfad ermitteln (kleinste Kapazität) $f_i$
+		\item Abziehen von $f_i$ von den Vorwärtskanten $f_j$ und hinzufügen bei den Rückwärtskanten $r_j$ des gewählten Pfades $f_j$, Existiert keine Rückwärtskante muss diese eingefügt werden\\ ($f_j-f_i$ und $r_j + f_i$)
 		\item Wenn ein weiterer Pfad von $s$ nach $t$ führt gehe zu  Punkt 1, andernfalls zu 5
-		\item der Gesamtfluss ist die summe aller begrenzenden Flüsse $f_{tot} = \sum_{i=1} f_i$
+		\item Der Gesamtfluss ist die Summe aller begrenzenden Flüsse $f_{tot} = \sum_{i=1} f_i$
 	\end{enumerate}
 \end{minipage}
 \begin{minipage}{0.3\textwidth}
@@ -380,11 +375,11 @@ Die Lösung des Max Flow Problems ist nicht eindeutig, darum können weitere Kri
 \textbf{Vorgehen:}
 \begin{enumerate}
 	\item Ford-Fulkerson anwenden ($f_{tot}$ bleibt konstant!)
-	\item Restnetzwerk durch Kantenkosten $k$ erweitern (Vorwärtskante: $+k$, Rückwertskante: $-k$)
-	\item Kreis mit negativen Kosten vorhanden gehe zu 4, andernfalls zu 5
+	\item Restnetzwerk durch Kantenkosten $k$ erweitern (Vorwärtskante: $+k$, Rückwärtskante: $-k$)
+	\item Wenn Kreis mit negativen Kosten vorhanden gehe zu 4, andernfalls zu 5
 	\item Fluss des neg. Kreises um die min. Kantenkapazität $c_{min}$ erhöhen (in Gegenrichtung!), gehe zu 3
 	\item Gesamtfluss (max): $f_{tot}$ aus Ford-Fulkerson
-	\item Gesamtkosten (min): Summe aller Rückwertskantenkosten (RK) multipliziert mit der entsprechenden Kantenkapazität:\\  
+	\item Gesamtkosten (min): Summe aller Rückwärtskantenkosten (RK) multipliziert mit der entsprechenden Kantenkapazität:\\  
 	$k_{tot} = \sum\limits_{ i \in \text{alle RK}} c_i \cdot |k_i| $
 \end{enumerate}
 
