@@ -75,10 +75,10 @@ MST = Aufstellen eines Minimalen Baums: Summe aller Kantengewichte ist minimal u
 	
 	\begin{tabularx}{\textwidth}{p{4cm} X p{4cm}}
 	  \textbf{Prim}-Algorithmus
-	    & Läuft über Ecken
+	    & Läuft über Ecken, ist greedy
 	    & $O(n^2)$ \\
 	  \textbf{Kruskal}-Algorithmus
-	    & Läuft über Kanten
+	    & Läuft über Kanten, ist greedy
 	    & $O(m \log(m))$\\
 	  MST-Heuristik
 	    & Von bestehendem MST aus, wird in beliebige Richtung iteriert
@@ -87,7 +87,7 @@ MST = Aufstellen eines Minimalen Baums: Summe aller Kantengewichte ist minimal u
 
 
 \subsubsection{Prim-Algorithmus}
-Setzt Ecken ($O(m^2)$)
+Setzt Ecken ($O(n^2)$) Zwischengraph ist immer zusammenhängend.
 \begin{enumerate}
 	\item Beliebige Startecke $v_0$ für den MST wählen
 	\item Ecke $v_i$ mit kleinstem Abstand zu einer Ecke im MST hinzufügen
@@ -96,7 +96,7 @@ Setzt Ecken ($O(m^2)$)
 
 
 \subsubsection{Kruskal-Algorithmus}
-Setzt Kanten ($O(m \log(m))$)
+Setzt Kanten ($O(m \log(m))$) Zwischengraph ist allenfalls unzusammenhängend.
 \begin{enumerate}
 	\item Kante mit kleinstem Gewicht in den MST aufnehmen
 	\item Kante $e_i$ mit kleinstem Gewicht, die zwei Ecken verbindet die noch nicht durch den MST verbunden sind, im MST aufnehmen
