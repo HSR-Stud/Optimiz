@@ -154,15 +154,16 @@ Generiert Hamiltonkreis (Lösung des TSP) aus MST (Lösung muss nicht optimal se
     
     
 \subsubsection{Dijkstra}
-Sucht die kürzeste Verbindung zwischen Knoten $v_0$ und $v_n$ Kantengewicht müssen Positiv sein!
+Sucht die kürzeste Verbindung zwischen Knoten $v_0$ und $v_n$ Kantengewicht müssen positiv sein! (sonst kann es zu nicht-optimalen Lösungen führen, da ein nicht beachteter Umweg schlussendlich kürzer gewesen wäre)
 Die Menge $V$ enthält alle Ecken die bereits erreicht wurden.
 $l_i$ ist der kürzeste Weg von der Ecke $v_0$ zur Ecke $v_i$.
 
 \begin{enumerate}
-	\item beliebige Startecke $v_0$ wählen und in die Ecken-Menge $V$ aufnehmen
-	\item Ecke zu $V$ hinzufügen, die mit dem kleinsten Abstand $w$ von einer Ecke in $V$ erreicht wird
-	\item $l_j = l_i + w$ ($j$ ist die neue Ecke und $i$ die Ecke die bereits in $V$ ist)
-	\item gehe zu 2 bis die Ecke $v_n$ zu $V$ hinzugefügt wird
+	\item Beliebige Startecke $v_0$ wählen und in die Ecken-Menge $V$ aufnehmen
+	\item Aus den von $V$ direkt erreichbaren Ecken diejenige zu $V$ hinzufügen, die zu $v_0$ die kürzeste Distanz hat
+	%\item Diejenige Ecke zu $V$ hinzufügen, die mit dem kleinsten Abstand $w$ (von $v_0$ aus gemessen) von einer Ecke in $V$ erreicht wird
+	\item $l_j = l_i + w$ ($j$ ist die neue Ecke und $i$ die Ecke, die bereits in $V$ ist, $w$ ist die Distanz zwischen $i$ und $j$)
+	\item Gehe zu 2 bis die Ecke $v_n$ zu $V$ hinzugefügt wird
 \end{enumerate}
 
 \begin{center}
