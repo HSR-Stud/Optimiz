@@ -194,7 +194,7 @@ Alle Kreise müssen ein nicht negatives Gewicht haben! Der Algorithmus ist konzi
 $shortestPath(i,j,k)$ gibt den kürzesten weg vom Knoten $v_i$ nach $v_j$, wobei der Weg über die ersten $k$ Knoten führen kann ($v_0,...,v_{k-1}$).
 
 Die Funktion kann rekursiv implementiert werden:
-\[ shortestPath(i,j,k+1) = \min \begin{cases} shortestPath(i,j,k) \qquad \qquad \qquad \qquad \qquad \text{Weg bereits bekannt (führt über $v_0, \ldots, v_{k-1}$)}\\ shortestPath(i,k,k)+shortestPath(k,j,k) \qquad  \text{Weg führt nach $k$ und von dort nach $j$} \end{cases} \]
+\[ shortestPath(i,j,k+1) = \min \begin{cases} shortestPath(i,j,k) \qquad \qquad \qquad \qquad \qquad \text{Weg bereits bekannt (führt über $v_0, \ldots, v_{k-1}$)}\\ shortestPath(i,k,k)+shortestPath(k,j,k) \qquad  \text{Weg führt über $k$ und von dort nach $j$} \end{cases} \]
 
 Hat ein Graph keine Kante von $v_i$ nach $v_j$ dann wird das Gewicht auf $\infty$ gesetzt!
 
