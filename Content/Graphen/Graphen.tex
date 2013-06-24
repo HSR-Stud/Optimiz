@@ -189,12 +189,12 @@ Bei diesem Beispiel wird für die Distanzheuristik $h(x)$ zwischen den Knoten $v
 Der Minimale Weg von der Post zum Knoten A beträgt 5 und kann rückwärts rekonstruiert werden:\\ $A\rightarrow B\rightarrow C \rightarrow Post$\\
 
 \subsubsection{Floyd-Warshall}
-Alle Kreise müssen ein nicht negatives Gewicht haben! Der Algo ist konzipiert für gerichtete Graphen, funktioniert auch für ungerichtete (beide Richtungen gleiches Gewicht).
+Alle Kreise müssen ein nicht negatives Gewicht haben! Der Algorithmus ist konzipiert für gerichtete Graphen, funktioniert auch für ungerichtete (beide Richtungen gleiches Gewicht).
 
 $shortestPath(i,j,k)$ gibt den kürzesten weg vom Knoten $v_i$ nach $v_j$, wobei der Weg über die ersten $k$ Knoten führen kann ($v_0,...,v_{k-1}$).
 
 Die Funktion kann rekursiv implementiert werden:
-\[ shortestPath(i,j,k+1) = \min \begin{cases} shortestPath(i,j,k) \qquad \qquad \qquad \qquad \qquad \qquad \text{Weg bereits bekannt}\\ shortestPath(i,k,k)+shortestPath(k,j,k) \qquad  \text{Weg fürt nach $k$ und von dort nach $k+1$} \end{cases} \]
+\[ shortestPath(i,j,k+1) = \min \begin{cases} shortestPath(i,j,k) \qquad \qquad \qquad \qquad \qquad \text{Weg bereits bekannt (führt über $v_0, \ldots, v_{k-1}$)}\\ shortestPath(i,k,k)+shortestPath(k,j,k) \qquad  \text{Weg führt nach $k$ und von dort nach $j$} \end{cases} \]
 
 Hat ein Graph keine Kante von $v_i$ nach $v_j$ dann wird das Gewicht auf $\infty$ gesetzt!
 
