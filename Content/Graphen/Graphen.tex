@@ -80,7 +80,7 @@ MST = Aufstellen eines Minimalen Baums: Summe aller Kantengewichte ist minimal u
 	  \textbf{Kruskal}-Algorithmus
 	    & Läuft über Kanten, ist greedy
 	    & $O(m \log(m))$\\
-	  MST-Heuristik
+	  \textbf{MST-Heuristik} zur Lö\-sung des TSP
 	    & Von bestehendem MST aus, wird in beliebige Richtung iteriert
 	    & $O(n)$ ??
 	\end{tabularx}
@@ -104,8 +104,8 @@ Setzt Kanten ($O(m \log(m))$) Zwischengraph ist allenfalls unzusammenhängend.
 \end{enumerate}
 
 
-\subsubsection{MST-Heuristik}
-Generiert Hamiltonkreis aus MST (Lösung muss nicht optimal sein!, Löst das TSP)
+\subsubsection{MST-Heuristik zur Lösung des TSP}
+Generiert Hamiltonkreis (Lösung des TSP) aus MST (Lösung muss nicht optimal sein!, Lösung ist abhängig vom Startpunkt)
 
 \begin{enumerate}
 	\item Jede Kante im MST verdoppeln (Eulergraphen)
