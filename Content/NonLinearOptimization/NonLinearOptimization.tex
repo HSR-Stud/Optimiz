@@ -3,10 +3,11 @@
 
 \section{Nichtlineare Optimierung}
 
-\textbf{Satz von Schwarz:} $\frac{\partial^2 f(x_1, x_2)}{\partial x_1 \partial x_2} = \frac{\partial^2 f(x_1, x_2)}{\partial x_2 \partial x_1}$
+\textbf{Satz von Schwarz:\skript{2}} $\frac{\partial^2 f(x_1, x_2)}{\partial x_1 \partial x_2} = \frac{\partial^2 f(x_1, x_2)}{\partial x_2 \partial x_1}$\\
+Bei partiellen Ableitungen spielt die Reihenfolge keine Rolle. (Bedingung: Alle partiellen Ableitungen stetig.)
 
 \begin{minipage}[t]{0.4\linewidth}
-\subsection{Gradient}
+\subsection{Gradient\skript{3}}
 Der Gradient zeigt immer in Richtung des steilsten Anstiegs der Funktion $f$ und steht senkrecht auf den Höhenlinien.\\
 
 
@@ -41,7 +42,7 @@ $f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
 		Quotientenregel:& $\left(\frac{f(x)}{g(x)}\right)'$ &$=$ & $\frac{f'(x)g(x)-f(x)g'(x)}{g^2(x)}$\\
 	\end{tabular}
 
-\subsection{Gradientenverfahren}
+\subsection{Gradientenverfahren\skript{4}}
   \begin{minipage}{9cm}
     Von der Stelle $\vec{x}^{(i)}$ wird in Richtung des Antigradienten geschritten. 
     $$\vec{x}^{(i+1)} = \vec{x}^{(i)} - \alpha_i \nabla f(\vec{x}^{(i)})$$
@@ -128,7 +129,7 @@ $f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
     p = p - a * gradf_numeric;
   \end{MatlabCode}
   
-\subsection{Newton-Verfahren}
+\subsection{Newton-Verfahren\skript{7}}
 
   \begin{minipage}{13cm}
   	\textbf{Tangentengleichung:}\\
@@ -167,7 +168,7 @@ $f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
   \end{minipage}
   
   
-\subsection{Quasi-Newton-Verfahren}
+\subsection{Quasi-Newton-Verfahren\skript{11}}
   \begin{minipage}{13cm}
   \textbf{Idee:} Die Ableitung des Newton-Verfahren wird durch die Sekantensteigung ersetzt.\\
   
@@ -201,10 +202,10 @@ $f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
     -f(x_1, x_2, \ldots, x_i+\epsilon, , \ldots x_k-\epsilon, \ldots, x_n) + f(x_1, x_2, \ldots, x_i-\epsilon, \ldots, x_k-\epsilon, \ldots, x_n)
   \end{pmatrix}$$
  
- \subsection{Konvergenzbeschleunigung}
+ \subsection{Konvergenzbeschleunigung\skript{17}}
  \textbf{Idee:} Mit der sogenannten Aitken'sche   $\nabla^2$–Methode wird aus der Folge $\{x_i\}$ die die schneller konvergierende Folge $\{\hat{x}_i\}$ berechnet.\\
  
- Aitken $\nabla^2$-Methode:\quad $\boxed{\hat{x}=x_i-\frac{(x_{i+1}-x_i)^2}{x_{i+2}-2x_{i+1}+x_{i}}}$\qquad $i\geq 0$ %\qquad (Formel dimensionsweise anwenden, für $x_1$, $x_2$, $\ldots$)
+ Aitken $\nabla^2$-Methode:\quad $\boxed{\hat{x}=x_i-\frac{(x_{i+1}-x_i)^2}{x_{i+2}-2x_{i+1}+x_{i}}}$\qquad $i\geq 0$ \qquad (Formel dimensionsweise anwenden, für $x_1$, $x_2$, $\ldots$)
  
  
  
