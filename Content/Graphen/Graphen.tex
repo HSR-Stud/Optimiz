@@ -298,7 +298,7 @@ Begrenzungen durch Einführen von zusätzlichen Knoten.
         & Kapazitäten müssen ganzzahlig sein! Pfade werden ausprobiert und jeweils der maximale Fluss durch diesen Pfad als (fiktiven) Rückwärtsfluss auf allen Kanten aufgetragen.
         & $O(m \cdot f)$\\
       \hline
-      \textbf{Edmonds-Karp}
+      \textbf{Edmonds-Karp} \skript{24}
         & Gleich wie Ford-Fulkerson, aber es wird eine Breitensuche BFS angewendet.
         & $O(n\cdot m^2)$\\
       \hline
@@ -314,7 +314,7 @@ Begrenzungen durch Einführen von zusätzlichen Knoten.
 \begin{minipage}{0.7\textwidth}
 	\begin{enumerate}
 		\item Beliebigen Pfad von $s$ nach $t$ wählen
-		\item Begrenzenden Pfad ermitteln (kleinste Kapazität) $f_i$
+		\item Begrenzenden Teil-Pfad ermitteln; Kleinste Kapazität $f_i$ notieren
 		\item Abziehen von $f_i$ von den Kapazitäten des gewählten Pfades $f_j$ ($f_j-f_i$)
 		\item Wenn ein weiterer Pfad von $s$ nacht $t$ führt gehe zu  Punkt 1, andernfalls zu 5
 		\item Der Gesamtfluss ist die Summe aller begrenzten Flüsse $f_{tot} = \sum_{i=1} f_i$
@@ -325,15 +325,16 @@ Begrenzungen durch Einführen von zusätzlichen Knoten.
 \end{minipage}
 
 
-Vorgehen ist problematisch, da es nicht erlaubt ist, Flüsse in entgegen den Pfeilrichtungen zu verschieben! (Praxis: werden nicht reale Flüsse in Gegenrichtung transportiert, sondern fiktive)
+Vorgehen ist problematisch, da es nicht möglich ist, einmal gewählte Flüsse wieder abzuwählen. (Greedy Verhalten)
 
 
 \subsubsection{Ford-Fulkerson}
-
 \begin{minipage}{0.7\textwidth}
+Vorwärtspfad: Gibt an, um wieviel der Durchfluss erhöht werden kann.\\
+Rückwärtspfad: Gibt an, um wieviel der Durchfluss verringert werden kann.
 	\begin{enumerate}
-		\item Pfad von $s$ nach $t$ wählen
-		\item Begrenzenden Pfad ermitteln (kleinste Kapazität) $f_i$
+		\item Beliebigen Pfad von $s$ nach $t$ wählen
+		\item Begrenzenden Teil-Pfad ermitteln; Kleinste Kapazität $f_i$ notieren
 		\item Abziehen von $f_i$ von den Vorwärtskanten $f_j$ und hinzufügen bei den Rückwärtskanten $r_j$ des gewählten Pfades $f_j$, Existiert keine Rückwärtskante muss diese eingefügt werden\\ ($f_j-f_i$ und $r_j + f_i$)
 		\item Wenn ein weiterer Pfad von $s$ nach $t$ führt gehe zu  Punkt 1, andernfalls zu 5
 		\item Der Gesamtfluss ist die Summe aller begrenzenden Flüsse $f_{tot} = \sum_{i=1} f_i$
