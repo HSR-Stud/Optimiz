@@ -53,11 +53,16 @@
     Beispiel eines GA-Modells:\\
     \includegraphics[width=12cm]{./Content/MetaHeuristics/GeneticAlgorithms_Model}
   \end{minipage}
-  \begin{minipage}{7cm}
+  \begin{minipage}{6cm}
     \begin{flushright}
-      \includegraphics[width=6cm]{./Content/MetaHeuristics/GeneticAlgorithms_Principle}
+      \includegraphics[width=5cm]{./Content/MetaHeuristics/GeneticAlgorithms_Principle}
     \end{flushright}
   \end{minipage}
+  
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{./Content/MetaHeuristics/phenoGeno}
+  \end{center}
+  
     \subsubsection{Codierung der Parameter \skript{11}}
       Am besten werden die Parameter \em Gray\em -codiert. Damit wird erreicht, dass für jeden möglichen Parameter-Wert zwei Ein-Bit-Mutationen existieren, die den nächstgrösseren und -kleineren Parameter-Wert bilden.
       
@@ -101,7 +106,7 @@
     \begin{itemize}
       \item \em Bit-Flip-Mutation\em : Zufällig ausgewählte Bits werden invertiert, wobei dies mit (kleiner) Wahrscheinlichkeit (Mutationsrate) geschieht.
       \item \em Positionsmutation\em : Bits oder ganze Bitstrings können an verschiedenen Positionen ausgetauscht werden.
-      \item \em Inversion\em : Bits können auch invertiert werden (Auswahl durch Zufall). \todo{RK: check, komische Erklärung im Skript}
+      \item \em Inversion\em : Bits können auch invertiert werden (Auswahl durch Zufall).
     \end{itemize}
   \end{minipage}
   \hfill
@@ -109,14 +114,14 @@
     \includegraphics[width=11cm]{./Content/MetaHeuristics/GeneticAlgorithms_Mutation}
   \end{minipage}
   
+  \newpage
+  
 \subsubsection{Ersetzungsschemata \skript{19}}
 
   Was passiert mit der alten Population?\\
   
   
   \includegraphics[width=\linewidth]{./Content/MetaHeuristics/GeneticAlgorithms_ReplacementsCroped}
-
-\newpage   
    
    
   \subsection{Ant Colony Optimization \skript{21}}
@@ -161,13 +166,14 @@
   
   \lstinputlisting[language=Java]{./Content/MetaHeuristics/ACO2.java}
   
-  \newpage
 \subsection{Particle Swarm Optimization \skript{23}}
   Speziell für Parameteroptimeriung geeignet: Jedes Individuum versucht zwar, sein lokales Optimum zu finden, gleichzeitig lernt es aber von den seinen eigenen Erfahrungen und denen des Schwarms.
   
   \begin{center}
   \includegraphics[width=0.7\linewidth]{./Content/MetaHeuristics/partSwarm}
   \end{center}
+
+\newpage
   
   \lstinputlisting[language=Java]{./Content/MetaHeuristics/PSO2.java}
   

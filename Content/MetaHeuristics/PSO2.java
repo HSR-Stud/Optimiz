@@ -1,8 +1,4 @@
-/** 
- *    Nonlinear Optimization / Metaheuristiken
- *
- *    Particle Swarm Optimization
- */
+/**Particle Swarm Optimization */
 
 class PSO {
   
@@ -56,14 +52,12 @@ class PSO {
       System.out.print(" generation "+g);
       for (int m = 0; m<n; m++) InOut.print(gbest[m], 5,6);
       System.out.println("  w "+w+"  f  "+fbest);
-  
       for (int p = 0; p<npop ; p++)        // update velocity & position
         for (int m = 0; m<n; m++) {
           v[p][m] = w*v[p][m] + c1*Math.random()*(ibest[p][m] - x[p][m])
                               + c2*Math.random()*(gbest[m] - x[p][m]);
           x[p][m] = x[p][m] + v[p][m] ;
-        }
-        
+        }      
       w=w*0.99;                          // inertia weight changes
     }
   }
