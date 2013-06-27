@@ -43,11 +43,12 @@
   
 
 \subsection{Genetische Algorithmen (GA) \skript{8}}
-  \begin{minipage}{12cm}
+  
     Löst alle Klassen von schwierigen Optimierungsproblemen: Parameteroptimierungen, kombinatorische Probleme (e.g. Travelling Salesman), Subset-Selektion (Stichwort Data-Mining). Nachteile sind die Erfahrung und das Geschick, das nötig ist für deren Entwicklung.
   
     Grundprinzip: Durch \em Selektion \em (Fitness/objective function), \em Rekombination \em (Kombination des genetischen Materials der Eltern) und \em Mutation \em (Veränderung der Erbinformation) können Funktionen optimiert werden. Dabei wird iterativ von einer "`alten"' Population durch verschiedene Operationen eine neue Population generiert, welche im Normalfall gleich gross sein soll.\\
     
+  \begin{minipage}{12cm}  
     Beispiel eines GA-Modells:\\
     \includegraphics[width=12cm]{./Content/MetaHeuristics/GeneticAlgorithms_Model}
   \end{minipage}
@@ -55,7 +56,7 @@
     \begin{flushright}
       \includegraphics[width=6cm]{./Content/MetaHeuristics/GeneticAlgorithms_Principle}
     \end{flushright}
-    
+  \end{minipage}
     \subsubsection{Codierung der Parameter \skript{11}}
       Am besten werden die Parameter \em Gray\em -codiert. Damit wird erreicht, dass für jeden möglichen Parameter-Wert zwei Ein-Bit-Mutationen existieren, die den nächstgrösseren und -kleineren Parameter-Wert bilden.
       
@@ -67,7 +68,7 @@
         b_{j+1} \oplus b_j & j < n
         \end{cases} \qquad \qquad 
       b_j = \sum \limits_{k=n}^j \oplus g_k$$
-  \end{minipage}
+  
   
 \subsubsection{Selektion \skript{15}}
   Probabilistische (Zufallsprinzip, z.B. \em Roulette-Wheel\em ) oder deterministische (nach Fitnesswerten, z.B. nur die besten; z.B. \em Binäre Wettkampfselektion\em ) Selektion. Problem bei beiden: Die besten Gene können verloren gehen, deshalb werden meist das beste oder die besten Individuen übernommen.
@@ -84,21 +85,26 @@
    
   
 \subsubsection{Mutation \skript{18}}
-  \begin{minipage}{8cm}
+  \begin{minipage}{7.75cm}
     \begin{itemize}
       \item \em Bit-Flip-Mutation\em : Zufällig ausgewählte Bits werden invertiert, wobei dies mit (kleiner) Wahrscheinlichkeit (Mutationsrate) geschieht.
       \item \em Positionsmutation\em : Bits oder ganze Bitstrings können an verschiedenen Positionen ausgetauscht werden.
       \item \em Inversion\em : Bits können auch invertiert werden (Auswahl durch Zufall). \todo{RK: check, komische Erklärung im Skript}
     \end{itemize}
   \end{minipage}
-  \begin{minipage}{11cm}
+  \hfill
+  \begin{minipage}{10.75cm}
     \includegraphics[width=11cm]{./Content/MetaHeuristics/GeneticAlgorithms_Mutation}
   \end{minipage}
   
 \subsubsection{Ersetzungsschemata \skript{19}}
-  Was passiert mit der alten Population? 
+
+  Was passiert mit der alten Population?\\
   
-  \includegraphics[width=12cm]{./Content/MetaHeuristics/GeneticAlgorithms_Replacements}
+  
+  \includegraphics[width=\linewidth]{./Content/MetaHeuristics/GeneticAlgorithms_ReplacementsCroped}
+
+\newpage   
    
    
   \subsection{Ant Colony Optimization \skript{21}}
@@ -126,14 +132,17 @@
   
   ACO wird eingesetzt für TSP, Vehicle Routing, Graph Coloring, Routing, Scheduling, etc.
   
-  ACO liefert schnell gute Resultate für kombinatorische Probleme, ist aber nicht für Parameteroptimierung geeignet.
+  ACO liefert schnell gute Resultate für kombinatorische Probleme, ist aber nicht für Parameteroptimierung geeignet.\\
   
-  \lstinputlisting[language=Java]{./Content/MetaHeuristics/ACO.java}
+  \lstinputlisting[language=Java]{./Content/MetaHeuristics/ACO2.java}
   
 \subsection{Particle Swarm Optimization \skript{23}}
   Speziell für Parameteroptimeriung geeignet: Jedes Individuum versucht zwar, sein lokales Optimum zu finden, gleichzeitig lernt es aber von den seinen eigenen Erfahrungen und denen des Schwarms.
   
+  \begin{center}
+  \includegraphics[width=0.7\linewidth]{./Content/MetaHeuristics/partSwarm}
+  \end{center}
   
-  \lstinputlisting[language=Java]{./Content/MetaHeuristics/PSO.java}
+  \lstinputlisting[language=Java]{./Content/MetaHeuristics/PSO2.java}
   
 

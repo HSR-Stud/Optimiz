@@ -32,18 +32,10 @@ f_{x_n}
 	\boxed{\includegraphics[width=0.9\linewidth]{./Content/NonLinearOptimization/maxMin}}\\
 \end{minipage}
 
-\subsection{Differential-Rechnung}
-$f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
-\frac{f(x_0+\Delta)x-f(x_0)}{\Delta x}$\\
-	\begin{tabular}{llll}
-		Kettenregel:	& $\Bigl(f\big(g(x)\big)\Bigr)'$ &$=$ & $g'(x)\cdot f'\big(g(x)\big)$\\[0.1cm]
-		%oder $\frac{d f(g(x))}{dx} = f'(g(x)) \cdot g'(x)$\\[0.1cm] 
-		Produktregel:	& $\Bigl(f(x)\cdot g(x)\Bigr)'$ &$=$ & $f'(x)\cdot g(x) + f(x)\cdot g'(x)$\\[0.1cm]
-		Quotientenregel:& $\left(\frac{f(x)}{g(x)}\right)'$ &$=$ & $\frac{f'(x)g(x)-f(x)g'(x)}{g^2(x)}$\\
-	\end{tabular}
 
-\subsection{Gradientenverfahren\skript{4}}
-  \begin{minipage}{9cm}
+
+  \begin{minipage}[t]{8.5cm}
+ \subsection{Gradientenverfahren\skript{4}}
     Von der Stelle $\vec{x}^{(i)}$ wird in Richtung des Antigradienten geschritten. 
     $$\vec{x}^{(i+1)} = \vec{x}^{(i)} - \alpha_i \nabla f(\vec{x}^{(i)})$$
 \subsubsection{Eigenschaften}    
@@ -59,16 +51,30 @@ $f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
       \item Konvergiert langsam
       \item In der Nähe der optimalen Lösung Zick-Zack-Kurs
     \end{liste}
+    
+    \subsubsection{Algorithmus (zur Minimierung)}
   \end{minipage}
   \hfill
-  \begin{minipage}{4.5cm}
-    \includegraphics[width=4.5cm]{./Content/NonLinearOptimization/Gradient1D.png}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{4.5cm}
-  	\includegraphics[width=4.5cm]{./Content/NonLinearOptimization/gradient-descent}
-  \end{minipage}
- \subsubsection{Algorithmus (zur Minimierung)}
+  \begin{minipage}[t]{10cm}
+  	  \subsection{Differential-Rechnung}
+  	  $f'(x_0)=\lim\limits_{\Delta x\rightarrow 0}
+  	  \frac{f(x_0+\Delta)x-f(x_0)}{\Delta x}$\\
+  	  	\begin{tabular}{llll}
+  	  		Kettenregel:	& $\Bigl(f\big(g(x)\big)\Bigr)'$ &$=$ & $g'(x)\cdot f'\big(g(x)\big)$\\[0.1cm]
+  	  		%oder $\frac{d f(g(x))}{dx} = f'(g(x)) \cdot g'(x)$\\[0.1cm] 
+  	  		Produktregel:	& $\Bigl(f(x)\cdot g(x)\Bigr)'$ &$=$ & $f'(x)\cdot g(x) + f(x)\cdot g'(x)$\\[0.1cm]
+  	  		Quotientenregel:& $\left(\frac{f(x)}{g(x)}\right)'$ &$=$ & $\frac{f'(x)g(x)-f(x)g'(x)}{g^2(x)}$\\
+  	  	\end{tabular}
+	  \begin{minipage}{4.5cm}
+	    \includegraphics[width=4.5cm]{./Content/NonLinearOptimization/Gradient1D.png}
+	  \end{minipage}
+	  \hfill
+	  \begin{minipage}{4.5cm}
+	  	\includegraphics[width=4.5cm]{./Content/NonLinearOptimization/gradient-descent}
+	  \end{minipage}
+ \end{minipage}
+ 
+ 
  
  \begin{enumerate}
 	\item $\beta_1=0$\quad$\beta_3=1$\qquad$h(\beta_i)=f\Bigl(\vec{x}^{(i)} - \beta_i \nabla f(\vec{x}^{(i)})\Bigr)$
