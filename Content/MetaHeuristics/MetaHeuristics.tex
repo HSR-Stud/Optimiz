@@ -5,7 +5,7 @@
   Algorithmus, um Zielfunktion $f(\vec{x})$zu maximieren:
   \begin{enumerate}
     \item Start: Wahl von $\vec{x}^{alt}$
-    \item Neue Wahl $\vec{x}^{neu}$ "`in der Nähe"' von $\vec{x}^{alt}$ {\tiny (Das war die komische Bitschieberei in der Vorlesung)}
+    \item Neue Wahl $\vec{x}^{neu}$ "`in der Nähe"' von $\vec{x}^{alt}$ (zuällig)%{\tiny (Das war die komische Bitschieberei in der Vorlesung)}
     \item Wenn $f(\vec{x}^{neu}) \geq f(\vec{x}^{alt})$, setze $\vec{x}^{alt} = \vec{x}^{neu}$ und gehe zu Schritt 2
   \end{enumerate}
   
@@ -30,7 +30,8 @@
   \begin{enumerate}
     \item Start: Wahl von $\vec{x}^{alt}$
     \item Neue Wahl $\vec{x}^{neu}$ "`in der Nähe"' von $\vec{x}^{alt}$
-    \item Wenn $f(\vec{x}^{neu}) \geq f(\vec{x}^{alt})$ oder mit einer Wahrscheinlichkeit von $p = e^{\frac{-\Delta E}{T}}$, setze $\vec{x}^{alt} = \vec{x}^{neu}$.
+    \item Wenn $f(\vec{x}^{neu}) \geq f(\vec{x}^{alt})$ oder mit einer Wahrscheinlichkeit von $p = e^{\frac{-\Delta E}{T}}$, setze $\vec{x}^{neu} = \vec{x}^{alt}$.\\
+    Metropolis Regel: Zufallsvaribale $z \in [0,1]$. Wenn $z \leq p$ dann wird der schlechtere Wert genommen $\vec{x}^{neu} = \vec{x}^{alt}$
     \item Schritte 2 und 3 wiederholen, bis vorgegebenes Abbruchkriterium erreicht ist.
   \end{enumerate}
   
@@ -60,16 +61,27 @@
     \subsubsection{Codierung der Parameter \skript{11}}
       Am besten werden die Parameter \em Gray\em -codiert. Damit wird erreicht, dass für jeden möglichen Parameter-Wert zwei Ein-Bit-Mutationen existieren, die den nächstgrösseren und -kleineren Parameter-Wert bilden.
       
-      \begin{center}
-        \includegraphics[width=7cm]{./Content/MetaHeuristics/GeneticAlgorithms_Gray}
-      \end{center}
-      $$g_j = \begin{cases}
-        b_n                & j=n\\
-        b_{j+1} \oplus b_j & j < n
-        \end{cases} \qquad \qquad 
-      b_j = \sum \limits_{k=n}^j \oplus g_k$$
+      \begin{minipage}{0.33\textwidth}
+      	\begin{center}
+  	        \includegraphics[width=\textwidth]{./Content/MetaHeuristics/GeneticAlgorithms_Gray}
+  	      \end{center}
+  	      $$g_j = \begin{cases}
+  	        b_n                & j=n\\
+  	        b_{j+1} \oplus b_j & j < n
+  	        \end{cases} \qquad 
+  	      b_j = \sum \limits_{k=n}^j \oplus g_k$$
+      	\end{minipage}
+      	\hfill
+      	\begin{minipage}{0.3\textwidth}
+            \includegraphics[width=\textwidth]{./Content/MetaHeuristics/binGray}	
+    	\end{minipage}
+    	\hfill
+    	\begin{minipage}{0.3\textwidth}
+            \includegraphics[width=\textwidth]{./Content/MetaHeuristics/grayBin}    	
+    	\end{minipage}
   
-  
+  	Eine optimale Kodierung wurde dann vorliegen, wenn eine kleine Änderung am Genotypen eine kleine Änderung am Phänotyp bewirkt und wenn eine grosse Änderung am Genotypen auch eine grosse Änderung am Phänotyp zur Folge hat.
+
 \subsubsection{Selektion \skript{15}}
   Probabilistische (Zufallsprinzip, z.B. \em Roulette-Wheel\em ) oder deterministische (nach Fitnesswerten, z.B. nur die besten; z.B. \em Binäre Wettkampfselektion\em ) Selektion. Problem bei beiden: Die besten Gene können verloren gehen, deshalb werden meist das beste oder die besten Individuen übernommen.
   
@@ -108,8 +120,11 @@
    
    
   \subsection{Ant Colony Optimization \skript{21}}
-  Ameisen folgen intensiven Pheromon-Spuren, da dort die Chance auf Futter zu treffen gross ist. Diese Idee wird bei ACO aufgenommen. Mit einer Wahrscheinlichkeit $P(x_{ij})$ wird ein möglicher Pfad $ij$ in die neue Generation übernommen. Zusätzlich wird meist auch ein "`Elite-Bypass"' mit Schwellwert $Q$ implementiert:
-  $$P(x_{ij}) = 
+  Ameisen folgen intensiven Pheromon-Spuren, da dort die Chance auf Futter zu treffen gross ist. Diese Idee wird bei ACO aufgenommen. Mit einer Wahrscheinlichkeit $P(x_{ij})$ wird ein möglicher Pfad $ij$ in die neue Generation übernommen. Zusätzlich wird meist auch ein "`Elite-Bypass"' mit Schwellwert $Q \in [0,1]$ implementiert:
+  
+  $$P(x_{ij}) = \begin{cases} \dfrac{\tau_{ij}^\alpha \eta_{ij}^\beta}{\sum\limits_{j \in \mathbf{W}_i} \tau_{ij}^\alpha \eta_{ij}^\beta}  & \text{if }j \in \mathbf{W}_i\\ 0 & \text{if }j \notin \mathbf{W}_i \end{cases}
+  \qquad \qquad
+  P(x_{ij}) = 
   \begin{cases}
     \text{if } z < Q = 
     \begin{cases}
@@ -118,17 +133,27 @@
     \end{cases} \\
     \text{if } z \geq Q
     \begin{cases}
-      \dfrac{\tau_{ij^\alpha \eta_{ij}^\beta}}{\sum\limits_{j \in \mathbf{W}_i} \tau_{ij^\alpha \eta_{ij}^\beta}}  & \text{if }j \in \mathbf{W}_i\\
+      \dfrac{\tau_{ij^\alpha \eta_{ij}^\beta}}{\sum\limits_{j \in \mathbf{W}_i} \tau_{ij}^\alpha \eta_{ij}^\beta}  & \text{if }j \in \mathbf{W}_i\\
       0 & \text{else}
     \end{cases}
   \end{cases}$$
-  mit $\eta_{ij}$ als heuristischer Information (z.B. $\eta_{ij} = \frac{1}{d_{ij}}$ beim TSP)
   
-  Bei jedem Schritt verdunsten die Pheromone nach folgender Regel mit Verdunstungsfaktor $0 \geq \rho \geq 1$:
-  $$\tau_{ij} = \begin{cases}
+  mit $\eta_{ij}$ als heuristischer Information (z.B. Abstand $\eta_{ij} = \frac{1}{d_{ij}}$ beim TSP), $z$ ist eine gleichverteilte Zufallsvariabale im bereich $[0,1]$.
+  
+  Bei jedem Schritt verdunsten die Pheromone nach folgender Regel mit Verdunstungsfaktor $0 \leq \rho \leq 1$:
+  $$\tau_{ij}^{neu} = \begin{cases}
     \tau_{ij}^{alt} (1-\rho) + \frac{\rho}{f(\vec{x})} & \text{if } j \in \mathbf{W}_i\\
     \tau_{ij}^{alt} (1-\rho) & \text{if } j \notin \mathbf{W}_i\\
-  \end{cases}$$
+  \end{cases}
+  \qquad \qquad
+  \tau_{ij}^{neu} = \varphi \cdot \tau^0 + (1-\varphi) \cdot
+  \begin{cases}
+      \tau_{ij}^{alt} (1-\rho) + \frac{\rho}{f(\vec{x})} & \text{if } j \in \mathbf{W}_i\\
+      \tau_{ij}^{alt} (1-\rho) & \text{if } j \notin \mathbf{W}_i\\
+    \end{cases}
+  $$
+  
+  ACO kann lokalen Extremalstellen konvergieren. Die kann durch das einführnen einer Konvergenzbremse $\varphi$ abgeschwächt werden.
   
   ACO wird eingesetzt für TSP, Vehicle Routing, Graph Coloring, Routing, Scheduling, etc.
   
@@ -136,6 +161,7 @@
   
   \lstinputlisting[language=Java]{./Content/MetaHeuristics/ACO2.java}
   
+  \newpage
 \subsection{Particle Swarm Optimization \skript{23}}
   Speziell für Parameteroptimeriung geeignet: Jedes Individuum versucht zwar, sein lokales Optimum zu finden, gleichzeitig lernt es aber von den seinen eigenen Erfahrungen und denen des Schwarms.
   
