@@ -180,17 +180,21 @@ f_{x_n}
   
   $F'(x^{(i+1)})\approx\frac{F(x^{(i+1)})-F(x^{(i)})}{x^{(i+1)}-x^{(i)}}$\\
   
+ \textbf{Broyden Quasi-Newton Verfahren:}
+ 
+ \quad \textbf{Initialisierung}
  \begin{enumerate}
- \item \textbf{Ein Schritt Newton-Verfahren:}
-	 \begin{enumerate}
-	 \item[(a)] Hesse-Matrix bestimmen: $\mathbf{H}(\vec{x}^{(0)})$\\
-	 Gradient bestimmen: $\nabla f(\vec{x}^{(0)})$
-	 \item[(b)] $\mathbf{A}_{0}^{-1}=\bigl(\mathbf{H}(\vec{x}^{(0)})\bigr)^{-1}$
-	 \item[(c)] $\vec{x}^{(1)}=\vec{x}^{(0)}-\mathbf{A}_{0}^{-1}\cdot\nabla f(\vec{x}^{(0)})$\\
-	 \end{enumerate}
+ \item[(a)] Hesse-Matrix bestimmen: $\mathbf{H}(\vec{x}^{(0)})$\\
+ Gradient bestimmen: $\nabla f(\vec{x}^{(0)})$
+ \item[(b)] $\mathbf{A}_{0}^{-1}=\bigl(\mathbf{H}(\vec{x}^{(0)})\bigr)^{-1}$
+ \item[(c)] $\vec{x}^{(1)}=\vec{x}^{(0)}-\mathbf{A}_{0}^{-1}\cdot\nabla f(\vec{x}^{(0)})$\\
+ \end{enumerate}
+
+ \quad \textbf{Loop} 
+ \begin{enumerate}
  \item $\vec{y}_i=\nabla f(\vec{x}^{(i)})-\nabla f(\vec{x}^{(i-1)})\qquad \vec{s}_i=\vec{x}^{(i)}-\vec{x}^{(i-1)} \qquad i\geq 1$
  \item $\mathbf{A}_{i}^{-1}=\mathbf{A}_{i-1}^{-1}-\displaystyle\frac{\bigl(\mathbf{A}_{i-1}^{-1}\cdot \vec{y}_i-\vec{s}_i\bigr)\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}}{\vec{s}_i\,^T\cdot \mathbf{A}_{i-1}^{-1}\cdot\vec{y}_i}\qquad i\geq 1$\\
- \item $\vec{x}^{(i+1)}=\vec{x}^{(i)}-\mathbf{A}_{i}^{-1}\cdot\nabla f(\vec{x}^{(i)})$\qquad zu Punkt 4.
+ \item $\vec{x}^{(i+1)}=\vec{x}^{(i)}-\mathbf{A}_{i}^{-1}\cdot\nabla f(\vec{x}^{(i)})$\qquad zu Punkt 1.
  \end{enumerate}
  
 \end{minipage}
