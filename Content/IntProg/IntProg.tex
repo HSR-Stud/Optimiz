@@ -29,6 +29,23 @@
 		
 		\includegraphics[width=10cm]{Content/IntProg/branch-bound}
 	\end{minipage}
+
+\subsubsection{Beispiel: ILP Übung 5.1}
+\begin{minipage}{6cm}
+	$\text{max } 5x_1+6x_2$\\
+	$3x_1 + 6x_2 \leqslant 18$\\
+	$9x_1+6x_2 \leqslant 27$\\
+	$x_1,x_2 \geqslant 0, \text{integer}$\\
+	
+	Branching: Runden Variable mit kleinstem Index\\
+	Strategie: \textit{Dept-First-Search}\\
+	Jeweils aufgerundeter Knoten zuerst\\
+	$[$Iteration$]$r=Knotennummer:\\
+\end{minipage}
+\begin{minipage}{12cm}
+	\includegraphics[width=12cm]{Content/IntProg/branch-bound-lp}
+\end{minipage}
+
 \subsubsection{Beispiel: Branch-and-bound beim Knapsack-Problem \skript{73--78}}
 
 \textbf{Lower bound:}\\
