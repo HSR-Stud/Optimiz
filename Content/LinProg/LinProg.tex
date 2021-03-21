@@ -4,7 +4,7 @@
   \subsubsection{Notationen}
     \begin{tabular}{p{6cm} l}
       Variablen (Spalten) & $x \in \mathbb{R}^n$; $I = \{1, ..., m\}$ \\
-      Constraints ((Un-)gleichungen; Zeilen) & $a^k$; $J = \{1, ..., m\}$ \\
+      Constraints ((Un-)gleichungen; Zeilen) & $a^k$; $J = \{1, ..., n\}$ \\
       Matrix & $A \in \mathbb{R}^{m \times n}$
     \end{tabular}
     
@@ -147,17 +147,15 @@
     \label{sec:linprog_umwandlungen}
    	Achtung: Freie Variable ($x_j = $ frei) und nicht positive ($x_i \leq 0$) als allererstes in allen Formulierungen (Funktion, Bedingungen) ersetzen!
     	
-    \begin{aufzaehlung}
-      \item $x_j \leq 0 \qquad \rightsquigarrow \qquad x_j := -\bar{x}_j, \quad \bar{x}_j \geq 0$
-      \item $x_j \text{ frei} \qquad \rightsquigarrow \qquad x_j := x_j^+ - x_j^-, \quad x_j^+, x_j^- \geq 0$
-      \item $a^i x = b_i \qquad \rightsquigarrow \qquad a^i x \leq b_i, \quad a^i x \geq b_i$
-      \item $a^i x \leq b_i \qquad \rightsquigarrow \qquad -a^i x \geq -b_i$ bzw.\\
-            $a^i x \geq b_i \qquad \rightsquigarrow \qquad -a^i x \leq -b_i$
-      \item $a^i x \leq b_i \qquad \rightsquigarrow \qquad a^i x + x_i^s = b_i, \quad x_i^s \geq 0$ bzw.\\
-            $a^i x \geq b_i \qquad \rightsquigarrow \qquad a^i x - x_i^s = b_i, \quad x_i^s \geq 0$
-      \item $\min \{cx\} \qquad \rightsquigarrow \qquad \max \{-cx\}$ \qquad \qquad bzw. \qquad $\max \{cx\} \qquad \rightsquigarrow \qquad \min \{-cx\}$\newline
-      $\min \{cx: x \in P\} = \textcolor{red}{-} \max \{-cx: x \in P\}$ \quad bzw. \quad $\max \{cx: x \in P\} = \textcolor{red}{-} \min \{-cx: x \in P\}$ (für Funktionsevaluation)
-    \end{aufzaehlung}
+    \begin{tabularx}{\linewidth}{p{0.3\linewidth}X}
+      \textbf{Non-positive to non-negative variables:} & \(x_j \leq 0 \qquad \rightsquigarrow \qquad x_j := -\overline{x_j}, \quad \overline{x_j} \geq 0\)\\
+      \textbf{Free to non-negative variables:} & \(x_j \text{ frei} \qquad \rightsquigarrow \qquad x_j := x_j^+ - x_j^-, \quad x_j^+, x_j^- \geq 0\)\\
+      \textbf{Equations to inequalities:} & \(a^i x = b_i \qquad \rightsquigarrow \qquad a^i x \leq b_i, \quad a^i x \geq b_i\)\\
+      \textbf{Inequalities ''\(\leq\)'' to inequalities ''\(\geq\)'' (and vice versa):} & \(a^i x \leq b_i \qquad \rightsquigarrow \qquad -a^i x \geq -b_i$ bzw. $a^i x \geq b_i \qquad \rightsquigarrow \qquad -a^i x \leq -b_i\)\\
+      \textbf{Inequalities to equations:} & \(a^i x \leq b_i \qquad \rightsquigarrow \qquad a^i x + x_i^s = b_i, \quad x_i^s \geq 0\) bzw. \(a^i x \geq b_i \qquad \rightsquigarrow \qquad a^i x - x_i^s = b_i, \quad x_i^s \geq 0\)\\
+    \end{tabularx}
+    \(\min \{cx\} \qquad \rightsquigarrow \qquad \max \{-cx\} \qquad \qquad\) bzw. \(\qquad \max \{cx\} \qquad \rightsquigarrow \qquad \min \{-cx\}\)\\
+    \(\min \{cx: x \in P\} = \textcolor{red}{-} \max \{-cx: x \in P\} \quad\) bzw. \(\quad \max \{cx: x \in P\} = \textcolor{red}{-} \min \{-cx: x \in P\}\) (für Funktionsevaluation)\\
   	
 	%\todo{Beispiel Umformung von und in Standardform (Bild mit entstehender Projektion ersichtlich)}
 	
