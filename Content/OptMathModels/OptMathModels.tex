@@ -14,7 +14,7 @@
       & \multicolumn{2}{l|}{Typen von Objekten (z.B. Städte $I = \{1,2,\ldots,n\}$)} \\
     \hline
     Parameter ($p_i$)
-      & \multicolumn{2}{p{14cm}|}{Vorgebene Grössen des Modells (z.B. aktueller Fahrzeugbestand in Filiale $i$, Distanz zwischen Filiale $i$ und $j$)} \\
+      & \multicolumn{2}{p{14cm}|}{Vorgegebene Grössen des Modells (z.B. aktueller Fahrzeugbestand in Filiale $i$, Distanz zwischen Filiale $i$ und $j$)} \\
     \hline
     Variablen ($x_{ij}$)
       & \multicolumn{2}{l|}{Veränderbare Modellgrösse (z.B. Anz. transferierte Fahrzeuge von Filiale $i$ nach $j$)} \\
@@ -102,7 +102,7 @@
 
 
 \subsection{Allgemeines Optimierungsproblem \skript{31}}
-  In Form von Ungleichungen und Gleichungen werden mögliche Lösungsmengen (\em solution spaces \em) definiert. Dort soll eine Zielfunktion $f$ optimiert (maximiert oder minimiert) werden. Die Fragestellung lautet: "`What's best?"' (preskriptive Modelle).
+  In Form von Ungleichungen und Gleichungen werden mögliche Lösungsmengen (\em solution spaces\em) definiert. Dort soll eine Zielfunktion $f$ optimiert (maximiert oder minimiert) werden. Die Fragestellung lautet: "`What's best?"' (preskriptive Modelle).
   
   \begin{center}
     \includegraphics[width=10cm]{./Content/OptMathModels/OptimiziationModel}
@@ -122,10 +122,12 @@
       & $f: S \rightarrow \mathbb{R}$\\
     Zulässigkeit (\em feasibility\em)
       & Lösungsraum darf nicht leer sein ($S \neq 0$)\\
-    Beschränktheit (\em bounded\em)
+    Beschränktheit (\em boundedness\em)
       & $f(x) \leq \omega,\, \omega \in \mathbb{R}$ für alle $x \in S$\\
-    Abgeschlossenheit (\em closed\em)
+    Abgeschlossenheit (\em closedness\em)
       & Zusätzlich zu Zulässigkeit und Beschränktheit: $x^* \in S$ (Optimallösung existiert)\\
+    Kontinuität (\em continuity\em)
+      & \(f\) ist eine kontinuierliche Funktion \\
   \hline
     \textbf{Definition des Lösungsraums} & \\
   \hline
@@ -145,7 +147,7 @@
     \textbf{Nachbarschaft (\em Neighbourhood\em)} & Beliebige Menge Punkte "`in der Nähe"' des aktuellen Punktes $x$\\
   \hline
     Euklidische Nachbarschaft
-      & $N_\epsilon(x) = \{ y \in \mathbb{R}^n: ||y-x|| \leq \epsilon \}$ mit $\epsilon > 0$, $||x|| = \sqrt{x^2} = \sqrt{x_1^2 + ... + x_n^n}$ (in $\mathbb{R}^2$ eine Kreis, $\mathbb{R}^3$ eine Kugel, etc.)\\
+      & $N_\epsilon(x) = \{ y \in \mathbb{R}^n: ||y-x|| \leq \varepsilon \}$ mit $\varepsilon > 0$, $||x|| = \sqrt{x^2} = \sqrt{x_1^2 + ... + x_n^2}$ (in $\mathbb{R}^2$ ein Kreis, $\mathbb{R}^3$ eine Kugel, etc.)\\
     Andere Nachbarschaften
       & Es sind auch andere Nachbarschaftsdefinitionen möglich (ohne Bsp.)\\
   \hline
@@ -154,7 +156,7 @@
       Globale Optimallösung
       & $x^*$ ist eine globale Optimallösung wenn $f(x^*) \geq f(x)$ für alle $x \in S$.\\
     Lokale Optima
-      & $x^*$ ist eine lokale Optimallösung (bzgl. Nachbarschaft $N_\epsilon$) wenn $f(x^*) \geq f(x)$ für alle $x \in N_\epsilon(x^*) \cap S$\\
+      & $x^*$ ist eine lokale Optimallösung (bzgl. Nachbarschaft $N_\varepsilon$) wenn $f(x^*) \geq f(x)$ für alle $x \in N_\varepsilon(x^*) \cap S$\\
     Niveaumengen (Höhenlinien, \em level sets\em)
       & Orthogonale Linien zu den linearen Funktionen (Geraden)\\      
   \end{tabularx}
@@ -202,3 +204,28 @@
   
 \subsection{Typen von Optimierungsmodellen und -methoden \skript{46}}
 
+\textbf{Optimisierungsmodelle:}
+\begin{itemize}
+  \item Constrained vs. Unconstrained
+  \item Global vs. Lokal
+  \item Differenzierbar vs. Nicht-Differenzierbar
+  \item Diskret vs. Kontinuierlich
+  \item Konvex vs. Nicht-Konvex
+  \item Linear vs. Nichtlinear
+\end{itemize}
+
+\textbf{Optimisierungsmethoden:}
+\begin{itemize}
+  \item Exakt vs. Heuristisch
+  \item Generell vs. Problemspezifisch
+\end{itemize}
+
+Typen von Heuristiken:
+\begin{itemize}
+  \item Konstruktiv
+  \item Verbessernde Heuristiken
+  \begin{itemize}
+    \item Lokale Suche (\textit{local search})
+    \item generelle Meta-Heuristiken (\textit{general meta heuristics})
+  \end{itemize}
+\end{itemize}
