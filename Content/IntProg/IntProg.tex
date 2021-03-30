@@ -30,7 +30,7 @@
 		\includegraphics[width=10cm]{Content/IntProg/branch-bound}
 	\end{minipage}
 
-\subsubsection{Beispiel: ILP Übung 5.1}
+\subsubsection{Beispiel: ILP Übung 6.2}
 \begin{minipage}{6cm}
 	$\text{max } 5x_1+6x_2$\\
 	$3x_1 + 6x_2 \leqslant 18$\\
@@ -81,7 +81,7 @@ Für die Wahl des nächsten zu expandierenden Knotens gibt es verschiedene Ansä
 	\item Vorgänger-Knoten in Klammern notieren (falls vorhanden, sonst '.')
 	\item Menge der definitiv abgewählten Knoten $J^0_r$ und definitiv gewählten Knoten $J^1_r$ notieren.
 	\item Bitvektor-Auswahl für upper bound $x_r^{UB}=x^{LP}$ notieren (enthält Bruchteil von item)
-	\item (Imaginären) Rucksackwert $z_r^{UB}=z^{LP}$ berechnen und auf pruning by dominance prüfen ($z_r^{UB}\le z^{LB}$) (bester bisher erreichter Wert kann sicher nicht erreicht werden); Falls pruning by dominance weiter mit Schritt 1.
+	\item (Imaginären) Rucksackwert $z_r^{UB}=z^{LB}$ berechnen und auf pruning by dominance prüfen ($z_r^{UB}\le z^{LB}$) (bester bisher erreichter Wert kann sicher nicht erreicht werden); Falls pruning by dominance weiter mit Schritt 1.
 	\item Bitvektor-Auswahl $x_r^{LB}$ notieren und zugehörigen Rucksackwert $z_r^{LB}$ berechnen
 	\item Auf global update für lower bound $(z_r^{LB} > z^{LB})$ prüfen, ggf. updaten.
 	\item Auf pruning by optimality $(z_r^{LB} = z^{UB})$ prüfen.
@@ -92,7 +92,7 @@ Für die Wahl des nächsten zu expandierenden Knotens gibt es verschiedene Ansä
 \subsection{Schnittebenenverfahren (Cutting Planes) \skript{78}}  
 	%\todo{RK: Keine Übungen dazu gefunden... ZF nötig??}
 	
-	Durch Linearkombination der Bedingungen, ist eine Einschränkung des Lösungsgebiets möglich. Die Multiplikatoren werden durch "pröbeln" gefunden. Beispiel:
+	Durch Linearkombination der Bedingungen, ist eine Einschränkung des Lösungsgebiets möglich. Die Multiplikatoren werden durch ''pröbeln'' gefunden. Beispiel:
 	
 	\begin{tabular}{p{8cm} p{4cm} p{3cm}}
 		Ursprüngliche Bedingung 1 & $x_1 + 3 x_2 \leq 6$ & $| \cdot \frac{5}{8}$\\

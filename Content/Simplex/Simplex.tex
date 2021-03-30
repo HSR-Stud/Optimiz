@@ -1,7 +1,7 @@
 \section{Simplex-Algorithmus}
 
 \begin{enumerate}
-\item \textbf{Vorbereitung:}\\
+\item \textbf{Vorbereitung:}
 	\begin{itemize}
 	\item \textbf{Lineares Programm (LP) in Ungleichungsform bringen:}\\
 	$\boxed{\max\{\mathbf{c} \mathbf{x}, \mathbf{x}\in\mathbb{R}^n :\mathbf{Ax}\leq \mathbf{b}\}\\}$\quad(Alle Nebenbedingungen mit $\leq$ formulieren; $\mathbf{c}$ ist ein Zeilenvektor)
@@ -13,8 +13,8 @@
 	
 \item \textbf{Algorithmus:}
 	\begin{enumerate}
-	\item \textbf{Basis bestimmen: } $\boxed{\mathbf{A_B}=\{\mathbf{A}\}_{\mathbf{B}}}$\quad und \quad $\boxed{\mathbf{b}_\mathbf{B}=\{\mathbf{b}\}_{\mathbf{B}}}$\quad ($B_i$-te Zeilen aus \textbf{A} und \textbf{b} auswählen)\\
-	\item Berechnung der \textbf{Basis-Inversen: }$\boxed{\overline{\mathbf{A}}=\mathbf{A_B}^{-1}}$\quad und der dazugehörigen \textbf{Basis-Lösung: }$\boxed{\mathbf{v}=\mathbf{\overline{A}}\cdot\mathbf{b_B}}$\\
+	\item \textbf{Basis bestimmen: } $\boxed{\mathbf{A}_B=\{\mathbf{A}\}_{B}}$\quad und \quad $\boxed{\mathbf{b}_{B}=\{\mathbf{b}\}_{B}}$\quad ($B_i$-te Zeilen aus \textbf{A} und \textbf{b} auswählen)\\
+	\item Berechnung der \textbf{Basis-Inversen: }$\boxed{\overline{\mathbf{A}}=\mathbf{A}_B^{-1}}$\quad und der dazugehörigen \textbf{Basis-Lösung: }$\boxed{\mathbf{v}=\mathbf{\overline{A}}\cdot\mathbf{b}_B}$\\
 	\item Berechnung der \textbf{''reduzierten Kosten''}: $\boxed{\mathbf{u}=\mathbf{c\overline{A}}}$
 	\begin{itemize}
 		\item $u_i<0$: Den ''negativsten'' Wert $u_j$ von $\mathbf{u}$ und die dazugehörige Spalte $\mathbf{\overline{a}}_j$ von $\mathbf{\overline{A}}$ bestimmen.\\
@@ -29,12 +29,12 @@
 		  \end{array}
 		\right.}$
 	\end{itemize}
-	\item \textbf{Richtungsvektor} für Bewegung auf Kante: $\boxed{\mathbf{d}=-\mathbf{\overline{a}}_j}$
+	\item \textbf{Richtungsvektor} für Bewegung auf Kante: $\boxed{\mathbf{d}=-\mathbf{\overline{A}}_j}$
 	\item \textbf{Bewegung in Richtung von} $\mathbf{d}$ solange \textbf{alle} Nebenbedingungen erfüllt.\\
 	
 	$\boxed{\mathbf{A}(\mathbf{v}+\lambda\cdot \mathbf{d})\leq \mathbf{b}}\quad\Rightarrow\quad\lambda^*$\quad($\lambda^*$ ist der Maximalwert von $\lambda$ welcher alle Nebenbedingungen noch erfüllt.)\\
 		
-	Berechnung von $k$: $\lambda^* = \min\limits_k \left\{ \frac{b_k-(Av)_k}{(Ad)_k}: k \in \{1, ..., m\}, (Ad)_k > 0\right\}$
+	Berechnung von $k$: $\lambda^* = \min\limits_k \left\{ \frac{b_i-\mathbf{a}^i\mathbf{v}}{\mathbf{a}^i\mathbf{d}}: i \in I, \mathbf{a}^i\mathbf{d} > 0\right\}$
 		
 	\begin{itemize}
 		\item $0\leq\lambda^*<\infty$\qquad \textbf{Weiter mit (f):} Zielfunktion in Richtung $\mathbf{d}$ durch Bedingung $k$ beschränkt
